@@ -22,7 +22,8 @@ SRC =		main.c \
 			ft_memcpy.c \
 			ft_strlcat.c \
 			ft_strncmp.c \
-			ft_putnbr_fd.c
+			ft_putnbr_fd.c \
+			texture.c
 
 OBJ =		${SRC:.c=.o}
 

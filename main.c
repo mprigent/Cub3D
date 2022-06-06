@@ -6,7 +6,7 @@
 /*   By: gadeneux <gadeneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:25 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/06 16:26:21 by gadeneux         ###   ########.fr       */
+/*   Updated: 2022/06/06 17:16:22 by gadeneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,8 @@
 
 double dirX = -1, dirY = 0; 						//initial direction vector
 double planeX = 0, planeY = 0.66;					//the 2d raycaster version of camera plane
-int mapWidth = 24;
-int mapHeight = 24;
 
-int texWidth = 200;
-int texHeight = 200;
-
-void	*get_texture(t_game *game, int direction)
+t_texture	*get_texture(t_game *game, int direction)
 {
 	switch (direction)
 	{
@@ -160,20 +155,22 @@ void draw_rays_3d(t_game *game)
 		else           wallX = game->player_x + perpWallDist * rayDirX;
 		wallX -= floor((wallX));
 
+		t_texture *tex = get_texture(game, get_direction(side, side == 0 ? stepX : stepY));
+
 		//x coordinate on the texture
-		int texX = (int) (wallX * (double) texWidth);
-		if(side == 0 && rayDirX > 0) texX = texWidth - texX - 1;
-		if(side == 1 && rayDirY < 0) texX = texWidth - texX - 1;
+		int texX = (int) (wallX * (double) tex->width);
+		if(side == 0 && rayDirX > 0) texX = tex->width - texX - 1;
+		if(side == 1 && rayDirY < 0) texX = tex->width - texX - 1;
 
 		// How much to increase the texture coordinate per screen pixel
-		double step = 1.0 * texHeight / lineHeight;
+		double step = 1.0 * tex->height / lineHeight;
 		// Starting texture coordinate
 		double texPos = (drawStart - SCREEN_HEIGHT / 2 + lineHeight / 2) * step;
 		for(int y = drawStart; y < drawEnd; y++)
 		{
 			int texY = texPos;
 			texPos += step;
-			int color = ft_pixel_color(get_texture(game, get_direction(side, side == 0 ? stepX : stepY)), texX, texY);
+			int color = ft_pixel_color(tex->data, texX, texY);
 			
 			ft_pixel(game->img, rayon_x, y, color);
 		}
@@ -392,14 +389,14 @@ int main(int ac, char **av)
 	}
 
 	//both camera direction and camera plane must be rotated
-	double rot = WEST_RADIANS;
-	double oldDirX = dirX;
+	// double rot = WEST_RADIANS;
+	// double oldDirX = dirX;
 
-	dirX = dirX * cos(rot) - dirY * sin(rot);
-	dirY = oldDirX * sin(rot) + dirY * cos(rot);
-	double oldPlaneX = planeX;
-	planeX = planeX * cos(rot) - planeY * sin(rot);
-	planeY = oldPlaneX * sin(rot) + planeY * cos(rot);
+	// dirX = dirX * cos(rot) - dirY * sin(rot);
+	// dirY = oldDirX * sin(rot) + dirY * cos(rot);
+	// double oldPlaneX = planeX;
+	// planeX = planeX * cos(rot) - planeY * sin(rot);
+	// planeY = oldPlaneX * sin(rot) + planeY * cos(rot);
 	
 	mlx_hook(game->mlx_win, 2, 1L << 0, ft_event_keydown, game);
 	mlx_hook(game->mlx_win, 3, 1L << 0, ft_event_keyup, game);

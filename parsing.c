@@ -62,17 +62,13 @@ void	ft_apply_value(t_game *game, char *line, char *value)
 	int	width = 0;
 
 	if (ft_str_startswith(line, "NO"))
-	{
-		game->north = mlx_xpm_file_to_image(game->mlx, value, &width, &height);
-		// game.dims[NORTH][0] = width;
-		// game.dims[NORTH][1] = height;
-	}
+		game->north = ft_texture(game->mlx, value);
 	if (ft_str_startswith(line, "SO"))
-		game->south = mlx_xpm_file_to_image(game->mlx, value, &width, &height);
+		game->south = ft_texture(game->mlx, value);
 	if (ft_str_startswith(line, "WE"))
-		game->west = mlx_xpm_file_to_image(game->mlx, value, &width, &height);
+		game->west = ft_texture(game->mlx, value);
 	if (ft_str_startswith(line, "EA"))
-		game->east = mlx_xpm_file_to_image(game->mlx, value, &width, &height);
+		game->east = ft_texture(game->mlx, value);
 	free(value);
 }
 

@@ -6,7 +6,7 @@
 /*   By: gadeneux <gadeneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:29 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/06 15:47:58 by gadeneux         ###   ########.fr       */
+/*   Updated: 2022/06/06 17:12:50 by gadeneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,12 @@ typedef struct	s_data {
 	int		endian;
 }				t_data;
 
+typedef struct	s_texture {
+	int		height;
+	int		width;
+	void	*data;
+}				t_texture;
+
 typedef struct	s_game {
 	void	*mlx_win;
 	void	*mlx;
@@ -67,10 +73,10 @@ typedef struct	s_game {
 	double	player_x;
 	double	player_y;
 	int		player_position_set;
-	void	*north;
-	void	*south;
-	void	*east;
-	void	*west;
+	t_texture	*north;
+	t_texture	*south;
+	t_texture	*east;
+	t_texture	*west;
 	int		key_a;
 	int		key_d;
 	int		key_w;
@@ -122,5 +128,7 @@ int		ft_strs_writeon(char ***tab, char *str);
 void	ft_strs_free(char ***tab);
 char	**ft_strs_alloc();
 int		ft_strs_len(char **tab);
+
+t_texture	*ft_texture(void *mlx, char *filename);
 
 # endif
