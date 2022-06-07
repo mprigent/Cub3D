@@ -6,7 +6,7 @@
 /*   By: gadeneux <gadeneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:25 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/07 16:28:04 by gadeneux         ###   ########.fr       */
+/*   Updated: 2022/06/07 16:29:44 by gadeneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -331,7 +331,6 @@ t_game	*init_game()
 	return (game);
 }
 
-// Error dans stderr
 // Check for closed map
 // Free game structure
 // Change vector angle relative to NSEW (Config file)

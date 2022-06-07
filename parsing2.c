@@ -6,7 +6,7 @@
 /*   By: gadeneux <gadeneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 23:47:13 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/06 16:12:08 by gadeneux         ###   ########.fr       */
+/*   Updated: 2022/06/07 17:45:42 by gadeneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,44 @@ int	ft_read_map_content(char *str, char ***map)
 	return (1);
 }
 
+int	ft_check_closing(char **map, int x, int y)
+{
+	// printf("Check %d %d\n", x, y);
+	
+	// Void border only
+	if (y == 0 || y + 1 >= ft_strs_len(map))
+		return (0);
+	if (x == 0 || x + 1 >= ft_strlen(map[y]))
+		return (-1);
+	if ((x >= ft_strlen(map[y + 1]) || map[y + 1][x] == ' ') || (x >= ft_strlen(map[y - 1]) || map[y - 1][x] == ' '))
+		return (-2);
+	if (map[y][x - 1] == ' ' || map[y][x + 1] == ' ')
+		return (-3);
+	return (1);
+}
+
+int	ft_check_closed(char **map)
+{
+	int i;
+	int j;
+	
+	i = 0;
+	while (i < ft_strs_len(map))
+	{
+		j = 0;	
+		while (map[i][j])
+		{
+			// printf("[%c] %d %d , ", map[i][j], i, j);
+			if (map[i][j] != '1' && map[i][j] != ' ' && ft_check_closing(map, j, i) != 1)
+				return (-1);
+			j++;
+		}
+		// printf("\n");
+		i++;
+	}
+	return (1);
+}
+
 int	ft_read_map(t_game *game, char *config)
 {
 	int		len;
@@ -127,6 +165,8 @@ int	ft_read_map(t_game *game, char *config)
 					return (0);
 				if (ft_read_player_position(game) != 1)
 					return (-1);
+				if (ft_check_closed(game->map) != 1)
+					return (-2);
 				return (1);
 			}
 			len = 0;
