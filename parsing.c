@@ -69,6 +69,10 @@ void	ft_apply_value(t_game *game, char *line, char *value)
 		game->west = ft_texture(game->mlx, value);
 	if (ft_str_startswith(line, "EA"))
 		game->east = ft_texture(game->mlx, value);
+	if (ft_str_startswith(line, "F"))
+		game->floor = ft_rgb(value);
+	if (ft_str_startswith(line, "C"))
+		game->ceil = ft_rgb(value);
 	free(value);
 }
 
@@ -104,6 +108,8 @@ int	ft_check_for_missing(t_game *game)
 {
 	if (!game->north || !game->south || !game->west || !game->east)
 		return (0);
+	if (game->ceil < 0 || game->floor < 0)
+		return (-1);
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: gadeneux <gadeneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:25 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/06 17:16:22 by gadeneux         ###   ########.fr       */
+/*   Updated: 2022/06/07 13:52:45 by gadeneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -287,7 +287,7 @@ int	init_mlx(t_game *game)
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		return (0);
-	game->mlx_win = mlx_new_window(game->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "Cub3d");
+	game->mlx_win = mlx_new_window(game->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "Cat3d");
 	if (!game->mlx_win)
 		return (-1);
 	game->img = malloc(sizeof(t_data));
@@ -326,17 +326,18 @@ t_game	*init_game()
 	game->player_x = 0;
 	game->player_y = 0;
 	game->player_position_set = 0;
+	game->floor = 0;
+	game->ceil = 0;
 	return (game);
 }
 
-// Movement < > for move camera & WSAD for move player in space
 // Sky color color from file rgb code
-// Check for closed map
-// Change vector angle relative to NSEW (Config file)
 // Error dans stderr
-// Taille des textures selon les fichiers
-// Check de la bonne direction des textures
+// Check for closed map
 // Free game structure
+// Change vector angle relative to NSEW (Config file)
+// Check de la bonne direction des textures
+// Movement < > for move camera & WSAD for move player in space
 // Norm
 
 int	check_filename(char *filename)
@@ -353,8 +354,8 @@ int	check_filename(char *filename)
 int main(int ac, char **av)
 {
 	t_game	*game;
-	(void)ac;
-	(void)av;
+	(void) ac;
+	(void) av;
 
 	if (ac != 2)
 	{

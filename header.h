@@ -6,7 +6,7 @@
 /*   By: gadeneux <gadeneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:29 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/06 17:12:50 by gadeneux         ###   ########.fr       */
+/*   Updated: 2022/06/07 14:40:36 by gadeneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ typedef struct	s_game {
 	t_texture	*south;
 	t_texture	*east;
 	t_texture	*west;
+	int		ceil;
+	int		floor;
 	int		key_a;
 	int		key_d;
 	int		key_w;
@@ -130,5 +132,9 @@ char	**ft_strs_alloc();
 int		ft_strs_len(char **tab);
 
 t_texture	*ft_texture(void *mlx, char *filename);
+
+int ft_rgb(char *str);
+
+int RGBtoInt(int r, int g, int b);
 
 # endif
