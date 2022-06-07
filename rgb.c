@@ -6,7 +6,7 @@
 /*   By: gadeneux <gadeneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 13:55:21 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/07 15:18:56 by gadeneux         ###   ########.fr       */
+/*   Updated: 2022/06/07 16:26:08 by gadeneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int ft_rgb(char *str)
 		free(rgb);
 		return (-3);
 	}
-	ret = RGBtoInt(rgb[0], rgb[1], rgb[2]);
+	ret = ft_rgb_to_int(rgb[0], rgb[1], rgb[2]);
 	free(rgb);
 	return (ret);
 }

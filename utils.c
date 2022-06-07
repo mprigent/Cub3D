@@ -6,7 +6,7 @@
 /*   By: gadeneux <gadeneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:11 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/07 15:14:52 by gadeneux         ###   ########.fr       */
+/*   Updated: 2022/06/07 16:26:08 by gadeneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ float distance(float ax, float ay, float bx, float by, float ang)
 	return cos(degToRad(ang))*(bx-ax) - sin(degToRad(ang))*(by-ay);
 }
 
-int RGBtoInt(int r, int g, int b)
+int ft_rgb_to_int(int r, int g, int b)
 {
     return (65536 * r + 256 * g + b);
 }

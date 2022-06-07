@@ -6,7 +6,7 @@
 /*   By: gadeneux <gadeneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:25 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/07 15:16:02 by gadeneux         ###   ########.fr       */
+/*   Updated: 2022/06/07 16:28:04 by gadeneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,7 +235,7 @@ int	init_parameters(t_game *game, char *content)
 {
 	if (ft_read_parameters(game, content) != 1)
 	{
-		printf("Parameters read error\n");
+		ft_error("Parameters read error\n");
 		return (-1);
 	}
 	return (1);
@@ -246,12 +246,12 @@ int	init_map(t_game *game, char *content)
 	game->map = ft_strs_alloc();
 	if (!game->map)
 	{
-		printf("Map allocation error\n");
+		ft_error("Map allocation error\n");
 		return (-1);
 	}
 	if (ft_read_map(game, content) != 1)
 	{
-		printf("Map read error\n");
+		ft_error("Map read error\n");
 		ft_strs_free(&game->map);
 		return (-1);
 	}
@@ -265,7 +265,7 @@ int	init_global(t_game *game, char *file)
 	content = ft_read_file(file);
 	if (content == NULL)
 	{
-		printf("File read error\n");
+		ft_error("File read error\n");
 		return (0);
 	}
 	if (init_parameters(game, content) != 1)
@@ -358,26 +358,26 @@ int main(int ac, char **av)
 
 	if (ac != 2)
 	{
-		printf("The program must only have the map file path in first argument\n");
+		ft_error("The program must only have the map file path in first argument\n");
 		return (0);
 	}
 
 	if (!check_filename(av[1]))
 	{
-		printf("The map filename must have .cub extension");
+		ft_error("The map filename must have .cub extension");
 		return (-1);
 	}
 	
 	game = init_game();//malloc(sizeof(t_game));
 	if (!game)
 	{
-		printf("Game allocation error\n");
+		ft_error("Game allocation error\n");
 		return (-2);
 	}
 	
 	if (init_mlx(game) != 1)
 	{
-		printf("Mlx initialisation error\n");
+		ft_error("Mlx initialisation error\n");
 		//TODO free game structure
 		return (-3);
 	}
@@ -397,8 +397,6 @@ int main(int ac, char **av)
 	// double oldPlaneX = planeX;
 	// planeX = planeX * cos(rot) - planeY * sin(rot);
 	// planeY = oldPlaneX * sin(rot) + planeY * cos(rot);
-	
-	printf("%d, %d\n", game->floor, game->ceil);
 	
 	mlx_hook(game->mlx_win, 2, 1L << 0, ft_event_keydown, game);
 	mlx_hook(game->mlx_win, 3, 1L << 0, ft_event_keyup, game);

@@ -6,7 +6,7 @@
 /*   By: gadeneux <gadeneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:29 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/07 14:40:36 by gadeneux         ###   ########.fr       */
+/*   Updated: 2022/06/07 16:26:08 by gadeneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,8 @@ t_texture	*ft_texture(void *mlx, char *filename);
 
 int ft_rgb(char *str);
 
-int RGBtoInt(int r, int g, int b);
+int ft_rgb_to_int(int r, int g, int b);
+
+void	ft_error(char *str);
 
 # endif

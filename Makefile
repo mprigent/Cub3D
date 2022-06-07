@@ -25,6 +25,7 @@ SRC =		main.c \
 			ft_putnbr_fd.c \
 			texture.c \
 			rgb.c \
+			error.c \
 
 OBJ =		${SRC:.c=.o}
 
