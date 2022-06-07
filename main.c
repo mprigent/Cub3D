@@ -6,7 +6,7 @@
 /*   By: gadeneux <gadeneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:25 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/07 16:29:44 by gadeneux         ###   ########.fr       */
+/*   Updated: 2022/06/07 22:43:11 by gadeneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -331,7 +331,25 @@ t_game	*init_game()
 	return (game);
 }
 
-// Check for closed map
+void	ft_free_game(t_game *game)
+{
+	if (game->img && game->img->addr)
+		free(game->img->addr);
+	if (game->img && game->img->img)
+		mlx_destroy_image(game->mlx, game->img->img);
+	if (game->img)
+		free(game->img);
+	if (game->mlx_win)
+		mlx_destroy_window(game->mlx, game->mlx_win);
+	ft_strs_free(&game->map);
+	ft_free_texture(game->mlx, game->north);
+	ft_free_texture(game->mlx, game->south);
+	ft_free_texture(game->mlx, game->east);
+	ft_free_texture(game->mlx, game->west);
+	if (game->mlx)
+		free(game->mlx);
+}
+
 // Free game structure
 // Change vector angle relative to NSEW (Config file)
 // Check de la bonne direction des textures
