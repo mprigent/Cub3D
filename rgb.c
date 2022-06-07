@@ -6,7 +6,7 @@
 /*   By: gadeneux <gadeneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 13:55:21 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/07 15:06:57 by gadeneux         ###   ########.fr       */
+/*   Updated: 2022/06/07 15:18:56 by gadeneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,6 @@ int ft_rgb(char *str)
 		return (-3);
 	}
 	ret = RGBtoInt(rgb[0], rgb[1], rgb[2]);
-	printf("Color is 0x%d (%d %d %d)\n", ret, rgb[0], rgb[1], rgb[2]);
-	ret = 0;
 	free(rgb);
 	return (ret);
 }

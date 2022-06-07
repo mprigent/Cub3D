@@ -6,7 +6,7 @@
 /*   By: gadeneux <gadeneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:25 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/07 13:52:45 by gadeneux         ###   ########.fr       */
+/*   Updated: 2022/06/07 15:16:02 by gadeneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,11 +143,11 @@ void draw_rays_3d(t_game *game)
 
 		// sky
 		for (int i = 0; i < drawStart; i++)
-			ft_pixel(game->img, rayon_x, i, 0xb773eb); // 0xf852e8
+			ft_pixel(game->img, rayon_x, i, game->ceil); // 0xf852e8
 		// ground
 		for (int i = drawEnd; i < drawEnd + SCREEN_HEIGHT; i++) // SCREEN_HEIGHT
 		{
-			ft_pixel(game->img, rayon_x, i, 0xe7d1ed); //0x984beeSCREEN_HEIGHT
+			ft_pixel(game->img, rayon_x, i, game->floor); //0x984beeSCREEN_HEIGHT
 		}
 		//calculate value of wallX
 		double wallX; //where exactly the wall was hit
@@ -326,12 +326,11 @@ t_game	*init_game()
 	game->player_x = 0;
 	game->player_y = 0;
 	game->player_position_set = 0;
-	game->floor = 0;
-	game->ceil = 0;
+	game->floor = -1;
+	game->ceil = -1;
 	return (game);
 }
 
-// Sky color color from file rgb code
 // Error dans stderr
 // Check for closed map
 // Free game structure
@@ -399,11 +398,14 @@ int main(int ac, char **av)
 	// planeX = planeX * cos(rot) - planeY * sin(rot);
 	// planeY = oldPlaneX * sin(rot) + planeY * cos(rot);
 	
+	printf("%d, %d\n", game->floor, game->ceil);
+	
 	mlx_hook(game->mlx_win, 2, 1L << 0, ft_event_keydown, game);
 	mlx_hook(game->mlx_win, 3, 1L << 0, ft_event_keyup, game);
 	mlx_loop_hook(game->mlx, render_next_frame, game);
 	draw_all(game);
 	mlx_loop(game->mlx);
+
 	
 	return (0);
 }
