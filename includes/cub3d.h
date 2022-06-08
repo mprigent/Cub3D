@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:29 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/08 20:42:33 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/08 20:47:42 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,13 +116,13 @@ int				ft_init_parameters(t_game *game, char *content);
 int				ft_init_map(t_game *game, char *content);
 int				ft_init_global(t_game *game, char *file);
 int				ft_init_mlx(t_game *game);
-t_game			*ft_init_game();
+t_game			*ft_init_game(void);
 
 /* -------------------------------------------------------------------------- */
 /*                            FILE = srcs/ft_rgb.c                            */
 /* -------------------------------------------------------------------------- */
 int				ft_readint(char *str, int from, int end);
-int 			ft_rgb_write(char *str, int *rgb);
+int				ft_rgb_write(char *str, int *rgb);
 int				check_format(char *str);
 int				ft_rgb(char *str);
 
@@ -145,14 +145,16 @@ void			ft_free_texture(void *mlx_ptr, t_texture *texture);
 char			*ft_read_file(char *file);
 char			*ft_read_value(char *line, int len);
 void			ft_apply_value(t_game *game, char *line, char *value);
-int				ft_read_parameter(t_game *game, char *config, int begin, int len);
+int				ft_read_parameter(t_game *game, char *config, \
+					int begin, int len);
 int				ft_check_for_missing(t_game *game);
 int				ft_read_parameters(t_game *game, char *config);
 
 /* -------------------------------------------------------------------------- */
 /*                      FILE = srcs/parsing/ft_parse.c                        */
 /* -------------------------------------------------------------------------- */
-void			ft_write_player_position(t_game *game, char direction, int x, int y);
+void			ft_write_player_position(t_game *game, char direction, \
+					int x, int y);
 int				ft_read_map_is_valid(char *str, int len);
 int				ft_write_map(char *str, int len, char ***map);
 int				ft_read_map_content(char *str, char ***map);
@@ -223,8 +225,10 @@ int				ft_rgb_to_int(int r, int g, int b);
 /* -------------------------------------------------------------------------- */
 /*                  FILE = srcs/utils/ft_utils_pixel_2.c                      */
 /* -------------------------------------------------------------------------- */
-void			ft_rect(t_data *data, int x, int y, int width, int height, int color);
-void			ft_square(t_data *data, int x, int y, int x2, int y2, int color);
+void			ft_rect(t_data *data, int x, int y, \
+					int width, int height, int color);
+void			ft_square(t_data *data, int x, \
+					int y, int x2, int y2, int color);
 
 /* -------------------------------------------------------------------------- */
 /*                   FILE = srcs/utils/ft_utils_str.c                         */
@@ -255,9 +259,9 @@ int				check_value(int i);
 /* -------------------------------------------------------------------------- */
 /*                              FILE = srcs/main.c                            */
 /* -------------------------------------------------------------------------- */
-void	draw_rays_3d(t_game *game);
-int		render_next_frame(void *data);
-void	draw_all(t_game *game);
-int		check_filename(char *filename);
+void			draw_rays_3d(t_game *game);
+int				render_next_frame(void *data);
+void			draw_all(t_game *game);
+int				check_filename(char *filename);
 
 #endif
