@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:29 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/08 20:47:42 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/08 20:59:27 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,14 +203,6 @@ int				ft_strlen(char *s);
 /*                     FILE = srcs/utils/ft_strncmp.c                         */
 /* -------------------------------------------------------------------------- */
 int				ft_strncmp(char *s1, char *s2, unsigned long long n);
-
-/* -------------------------------------------------------------------------- */
-/*                    FILE = srcs/utils/ft_utils_maths.c                      */
-/* -------------------------------------------------------------------------- */
-float			ft_dist(float ax, float ay, float bx, float by, float ang);
-float			degToRad(float a);
-float			FixAng(float a);
-float			distance(float ax, float ay, float bx, float by, float ang);
 
 /* -------------------------------------------------------------------------- */
 /*                  FILE = srcs/utils/ft_utils_pixel.c                        */

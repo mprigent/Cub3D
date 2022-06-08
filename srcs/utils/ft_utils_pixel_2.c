@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 19:57:53 by mprigent          #+#    #+#             */
-/*   Updated: 2022/06/08 19:58:40 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/08 20:54:55 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,36 @@
 
 void	ft_rect(t_data *data, int x, int y, int width, int height, int color)
 {
-	for (int i = 0; i < width; i++)
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < width)
 	{
-		for (int j = 0; j < height; j++)
+		j = 0;
+		while (j < height)
 		{
-			ft_pixel(data, x + i, y + j, color);	
+			ft_pixel(data, x + i, y + j, color);
+			j++;
 		}
+		i++;
 	}
 }
 
 void	ft_square(t_data *data, int x, int y, int x2, int y2, int color)
 {
-	for (int i = x; i < x2; i++)
+	int	i;
+	int	j;
+
+	i = x;
+	while (i < x2)
 	{
-		for (int j = y; j < y2; j++)
+		j = y;
+		while (j < y2)
 		{
 			ft_pixel(data, i, j, color);
+			j++;
 		}
+		i++;
 	}
 }
