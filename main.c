@@ -6,7 +6,7 @@
 /*   By: gadeneux <gadeneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:25 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/08 16:27:09 by gadeneux         ###   ########.fr       */
+/*   Updated: 2022/06/08 16:35:44 by gadeneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -236,7 +236,6 @@ int	init_map(t_game *game, char *content)
 	if (ft_read_map(game, content) != 1)
 	{
 		ft_error("Map read error\n");
-		ft_strs_free(&game->map);
 		return (-1);
 	}
 	return (1);
