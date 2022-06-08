@@ -6,13 +6,13 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 18:15:24 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/08 18:52:22 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/08 19:08:45 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-char	**ft_strs_alloc()
+char	**ft_strs_alloc(void)
 {
 	char	**dst;
 	
