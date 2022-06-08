@@ -17,7 +17,7 @@ char	*ft_read_file(char *file)
 	while ((ret = read(fd, buf, 1)))
 	{
 		buf[1] = 0;
-		if(!ft_str_writeon(&buffer, buf))
+		if (!ft_str_writeon(&buffer, buf))
 		{
 			if (buffer)
 				free(buffer);
@@ -46,13 +46,14 @@ char	*ft_read_value(char *line, int len)
 	}
 	while (*line && len--)
 	{
-		if (ft_str_cwriteon(&ret, *line) != 1)
+		if (ft_str_cwriteon(&ret, *line++) != 1)
+		{
 			if (ret)
 			{
 				free(ret);
 				return (NULL);
 			}
-		line++;
+		}
 	}
 	return (ret);
 }
@@ -74,15 +75,25 @@ void	ft_apply_value(t_game *game, char *line, char *value)
 	free(value);
 }
 
+int	ft_is_identifier(char *str)
+{
+	if (ft_str_startswith(str, "NO")
+		|| ft_str_startswith(str, "SO")
+		|| ft_str_startswith(str, "WE")
+		|| ft_str_startswith(str, "EA")
+		|| ft_str_startswith(str, "F")
+		|| ft_str_startswith(str, "C"))
+		return (1);
+	return (0);
+}
+
 int	ft_read_parameter(t_game *game, char *config, int begin, int len)
 {
 	char	*value;
+
 	if (ft_str_isempty(config, begin, len))
 		return (1);
-
-	if (ft_str_startswith(&config[begin], "NO") || ft_str_startswith(&config[begin], "SO")
-			|| ft_str_startswith(&config[begin], "WE") || ft_str_startswith(&config[begin], "EA")
-			|| ft_str_startswith(&config[begin], "F") || ft_str_startswith(&config[begin], "C"))
+	if (ft_is_identifier(&config[begin]))
 	{
 		value = ft_read_value(&config[begin], len);
 		if (value == NULL)
@@ -95,41 +106,8 @@ int	ft_read_parameter(t_game *game, char *config, int begin, int len)
 		ft_apply_value(game, &config[begin], value);
 		return (1);
 	}
-
-	if (!ft_str_startswith(&config[begin], "1") && !ft_str_startswith(&config[begin], " "))
+	if (!ft_str_startswith(&config[begin], "1")
+		&& !ft_str_startswith(&config[begin], " "))
 		return (-2);
-
-	return (1);
-}
-
-int	ft_check_for_missing(t_game *game)
-{
-	if (!game->north || !game->south || !game->west || !game->east)
-		return (0);
-	if (game->ceil < 0 || game->floor < 0)
-		return (-1);
-	return (1);
-}
-
-int	ft_read_parameters(t_game *game, char *config)
-{
-	int		len;
-	int		i;
-
-	i = 0;
-	len = 0;
-	while (config[i])
-	{
-		if (config[i] == '\n')
-		{
-			if (ft_read_parameter(game, config, i - len, len) != 1)
-				return (0);
-			len = 0;
-		} else
-			len++;
-		i++;
-	}
-	if (ft_check_for_missing(game) != 1)
-		return (-1);
 	return (1);
 }
