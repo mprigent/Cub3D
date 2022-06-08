@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gadeneux <gadeneux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:29 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/09 01:07:26 by gadeneux         ###   ########.fr       */
+/*   Updated: 2022/06/09 01:36:45 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -272,8 +272,9 @@ int				check_value(int i);
 /*                              FILE = srcs/main.c                            */
 /* -------------------------------------------------------------------------- */
 void			draw_rays_3d(t_game *game, t_raycasting *ray);
-int				render_next_frame(void *data);
-void			draw_all(t_game *game);
+int				ft_render_next_frame(void *data);
+void			ft_draw_all(t_game *game);
 int				check_filename(char *filename);
+int 			ft_check_init(char **argv, t_game *game);
 
 #endif
