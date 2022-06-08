@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gadeneux <gadeneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:29 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/08 21:36:15 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/08 23:01:31 by gadeneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -234,6 +234,7 @@ int				ft_strs_len(char **tab);
 void			ft_strs_free(char ***tab);
 char			**ft_strs_allocate(char *str);
 int				ft_strs_copy_into(char **tab, char **dst);
+void			ft_strs_rev(char **strs);
 
 /* -------------------------------------------------------------------------- */
 /*                 FILE = srcs/utils/ft_utils_str_3.c                         */
