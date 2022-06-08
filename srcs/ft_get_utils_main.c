@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 20:17:24 by mprigent          #+#    #+#             */
-/*   Updated: 2022/06/08 20:20:33 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/08 21:09:43 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	ft_getcaracter(t_game *game, int x, int y)
 	return (game->map[y][x]);
 }
 
-int		ft_iswall(t_game *game, int x, int y)
+int	ft_iswall(t_game *game, int x, int y)
 {
 	return (ft_getcaracter(game, x, y) == '1');
 }

@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 23:47:13 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/08 19:37:22 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/08 21:12:01 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	ft_read_map_is_valid(char *str, int len)
 	{
 		if (str[i] != '1' && str[i] != '0' && str[i] != (char) 32 && str[i] != 'N'
 				&& str[i] != 'S' && str[i] != 'E' && str[i] != 'W')
-					return (0);
+			return (0);
 		i++;
 	}
 	return (1);
@@ -65,7 +65,7 @@ int	ft_read_map_is_valid(char *str, int len)
 int	ft_write_map(char *str, int len, char ***map)
 {
 	char	*buf;
-	
+
 	if (ft_str_isempty(str, 0, len))
 		return (0);
 	if (ft_read_map_is_valid(str, len) != 1)
@@ -100,13 +100,13 @@ int	ft_read_map_content(char *str, char ***map)
 			len = 0;
 			y++;
 		} else
-		if (i + 1 >= ft_strlen(str))
-		{
-			if (ft_write_map(&str[i - len], len + 1, map) != 1)
-				return (-1);
-			break ;
-		} else
-			len++;
+			if (i + 1 >= ft_strlen(str))
+			{
+				if (ft_write_map(&str[i - len], len + 1, map) != 1)
+					return (-1);
+				break ;
+			} else
+				len++;
 		i++;
 	}
 	return (1);
@@ -115,7 +115,7 @@ int	ft_read_map_content(char *str, char ***map)
 int	ft_check_closing(char **map, int x, int y)
 {
 	// printf("Check %d %d\n", x, y);
-	
+
 	// Void border only
 	if (y == 0 || y + 1 >= ft_strs_len(map))
 		return (0);
@@ -132,7 +132,7 @@ int	ft_check_closed(char **map)
 {
 	int i;
 	int j;
-	
+
 	i = 0;
 	while (i < ft_strs_len(map))
 	{

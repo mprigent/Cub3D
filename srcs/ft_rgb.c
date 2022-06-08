@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 13:55:21 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/08 20:06:16 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/08 21:14:19 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 int	ft_readint(char *str, int from, int end)
 {
-	int i = from;
-	int result = 0;
-	
+	int	i;
+	int	result;
+
+	i = from;
+	result = 0;
 	if (from > end)
 		return (-1);
 	while (i <= end)
@@ -29,12 +31,12 @@ int	ft_readint(char *str, int from, int end)
 	return (result);
 }
 
-int ft_rgb_write(char *str, int *rgb)
+int	ft_rgb_write(char *str, int *rgb)
 {
-	int start;
-	int count;
+	int	start;
+	int	count;
 	int	i;
-	
+
 	i = 0;
 	start = 0;
 	count = 0;
@@ -58,8 +60,8 @@ int ft_rgb_write(char *str, int *rgb)
 
 int	check_format(char *str)
 {
-	int comma;
-	int i;
+	int	comma;
+	int	i;
 
 	i = 0;
 	comma = 0;
@@ -74,11 +76,11 @@ int	check_format(char *str)
 	return (0);
 }
 
-int ft_rgb(char *str)
+int	ft_rgb(char *str)
 {
-	int ret;
-	int *rgb;
-	
+	int	ret;
+	int	*rgb;
+
 	if (check_format(str) != 1)
 		return (-1);
 	rgb = malloc(sizeof(int) * 3);

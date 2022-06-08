@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:25 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/08 21:06:35 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/08 21:11:42 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	draw_rays_3d(t_game *game)
 {
 	for(int rayon_x = 0; rayon_x < SCREEN_WIDTH; rayon_x++)
-    {
+	{
 		//calculate ray position and direction
 		double cameraX = 2 * rayon_x / (double) SCREEN_WIDTH - 1;		//x-coordinate in camera space
 		double rayDirX = game->dir_x + game->plane_x * cameraX;
@@ -52,7 +52,7 @@ void	draw_rays_3d(t_game *game)
 			stepX = 1;
 			sideDistX = (mapX + 1.0 - game->player_x) * deltaDistX;
 		}
-		
+
 		if (rayDirY < 0)
 		{
 			stepY = -1;
@@ -131,7 +131,7 @@ void	draw_rays_3d(t_game *game)
 			int texY = texPos;
 			texPos += step;
 			int color = ft_pixel_color(tex->data, texX, texY);
-			
+
 			ft_pixel(game->img, rayon_x, y, color);
 		}
 	}
@@ -209,21 +209,21 @@ int main(int ac, char **av)
 		ft_error("The map filename must have .cub extension");
 		return (-1);
 	}
-	
+
 	game = ft_init_game();
 	if (!game)
 	{
 		ft_error("Game allocation error\n");
 		return (-2);
 	}
-	
+
 	if (ft_init_mlx(game) != 1)
 	{
 		ft_error("Mlx initialisation error\n");
 		ft_free_game(game);
 		return (-3);
 	}
-	
+
 	if (ft_init_global(game, av[1])!= 1)
 	{
 		ft_free_game(game);

@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 20:21:46 by mprigent          #+#    #+#             */
-/*   Updated: 2022/06/08 20:24:36 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/08 21:15:31 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	ft_init_map(t_game *game, char *content)
 int	ft_init_global(t_game *game, char *file)
 {
 	char	*content;
-	
+
 	content = ft_read_file(file);
 	if (content == NULL)
 	{
@@ -67,7 +67,8 @@ int	ft_init_mlx(t_game *game)
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		return (0);
-	game->mlx_win = mlx_new_window(game->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "Cat3d");
+	game->mlx_win = mlx_new_window(game->mlx, \
+						SCREEN_WIDTH, SCREEN_HEIGHT, "Cat3d");
 	if (!game->mlx_win)
 		return (-1);
 	game->img = malloc(sizeof(t_data));
@@ -76,15 +77,15 @@ int	ft_init_mlx(t_game *game)
 	game->img->img = mlx_new_image(game->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
 	if (!game->img->img)
 		return (-2);
-	game->img->addr = mlx_get_data_addr(game->img->img, &game->img->bits_per_pixel, &game->img->line_length,
-									  &game->img->endian);
+	game->img->addr = mlx_get_data_addr(game->img->img, \
+						&game->img->bits_per_pixel, &game->img->line_length, \
+						&game->img->endian);
 	if (!game->img->addr)
 		return (-2);
-	
 	return (1);
 }
 
-t_game	*ft_init_game()
+t_game	*ft_init_game(void)
 {
 	t_game	*game;
 
