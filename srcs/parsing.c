@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gadeneux <gadeneux@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/09 01:31:08 by gadeneux          #+#    #+#             */
+/*   Updated: 2022/06/09 01:34:04 by gadeneux         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 char	*ft_read_file(char *file)
@@ -14,11 +26,21 @@ char	*ft_read_file(char *file)
 	buf = malloc(sizeof(char) * 2);
 	if (!buf)
 		return (NULL);
-	while ((ret = read(fd, buf, 1)))
+	ret = 1;
+	while (ret)
 	{
+		ret = read(fd, buf, 1);
+		if (ret == -1)
+		{
+			free(buf);
+			if (buffer)
+				free(buffer);
+			return (NULL);
+		}
 		buf[1] = 0;
 		if (!ft_str_writeon(&buffer, buf))
 		{
+			free(buf);
 			if (buffer)
 				free(buffer);
 			return (NULL);
