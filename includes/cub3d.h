@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:29 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/08 21:07:07 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/08 21:24:44 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,13 +110,18 @@ char			ft_getcaracter(t_game *game, int x, int y);
 int				ft_iswall(t_game *game, int x, int y);
 
 /* -------------------------------------------------------------------------- */
-/*                            FILE = srcs/ft_init.c                           */
+/*                            FILE = srcs/ft_init_game.c                      */
+/* -------------------------------------------------------------------------- */
+t_game			*ft_init_game(void);
+t_game			*ft_init_game2(t_game *game);
+
+/* -------------------------------------------------------------------------- */
+/*                        FILE = srcs/ft_init_global.c                        */
 /* -------------------------------------------------------------------------- */
 int				ft_init_parameters(t_game *game, char *content);
 int				ft_init_map(t_game *game, char *content);
 int				ft_init_global(t_game *game, char *file);
 int				ft_init_mlx(t_game *game);
-t_game			*ft_init_game(void);
 
 /* -------------------------------------------------------------------------- */
 /*                            FILE = srcs/ft_rgb.c                            */
