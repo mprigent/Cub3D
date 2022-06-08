@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:29 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/08 21:24:44 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/08 21:36:15 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,6 +167,7 @@ int				ft_check_closing(char **map, int x, int y);
 int				ft_check_closed(char **map);
 int				ft_read_map(t_game *game, char *config);
 
+
 //				UTILS				//
 /* -------------------------------------------------------------------------- */
 /*                       FILE = srcs/utils/ft_calloc.c                        */
@@ -240,6 +241,7 @@ int				ft_strs_copy_into(char **tab, char **dst);
 int				ft_strs_writeon(char ***tab, char *str);
 int				is_numeric(char c);
 int				check_value(int i);
+
 
 //				MAIN				//
 /* -------------------------------------------------------------------------- */
