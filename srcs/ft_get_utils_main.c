@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_utils_main.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gadeneux <gadeneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 20:17:24 by mprigent          #+#    #+#             */
-/*   Updated: 2022/06/08 21:09:43 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/09 01:27:54 by gadeneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,32 @@
 
 t_texture	*get_texture(t_game *game, int direction)
 {
-	switch (direction)
-	{
-		case NORTH: return (game->north);
-		case SOUTH: return (game->south);
-		case EAST: return (game->east);
-		case WEST: return (game->west);
-	}
-	return (NULL);
+	if (direction == NORTH)
+		return (game->north);
+	if (direction == SOUTH)
+		return (game->south);
+	if (direction == EAST)
+		return (game->east);
+	if (direction == WEST)
+		return (game->west);
 }
 
 int	get_direction(int side, int step)
 {
 	if (side == 0)
-		return (step > 0 ? SOUTH : NORTH);
+	{
+		if (step > 0)
+			return (SOUTH);
+		else
+			return (NORTH);
+	}
 	if (side == 1)
-		return (step > 0 ? EAST : WEST);
+	{
+		if (step > 0)
+			return (EAST);
+		else
+			return (WEST);
+	}
 	return (-1);
 }
 
