@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_global.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gadeneux <gadeneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 20:21:46 by mprigent          #+#    #+#             */
-/*   Updated: 2022/06/08 21:18:30 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/09 01:28:35 by gadeneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	ft_init_global(t_game *game, char *file)
 	char	*content;
 
 	content = ft_read_file(file);
-	if (content == NULL)
+	if (content == 0)
 	{
 		ft_error("File read error\n");
 		return (0);

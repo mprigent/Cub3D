@@ -6,7 +6,7 @@
 /*   By: gadeneux <gadeneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 20:17:24 by mprigent          #+#    #+#             */
-/*   Updated: 2022/06/09 01:27:54 by gadeneux         ###   ########.fr       */
+/*   Updated: 2022/06/09 01:29:35 by gadeneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_texture	*get_texture(t_game *game, int direction)
 		return (game->east);
 	if (direction == WEST)
 		return (game->west);
+	return (0);
 }
 
 int	get_direction(int side, int step)

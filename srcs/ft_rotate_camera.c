@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_rotate_camera.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gadeneux <gadeneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 15:54:25 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/08 21:28:49 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/09 01:29:22 by gadeneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 void	ft_rotate_camera(t_game *game, double rot)
 {
-	double	oldDirX;
-	double	oldPlaneX;
+	double	old_plane_x;
+	double	old_dir_x;
 
-	oldDirX = game->dir_x;
+	old_dir_x = game->dir_x;
 	game->dir_x = game->dir_x * cos(rot) - game->dir_y * sin(rot);
-	game->dir_y = oldDirX * sin(rot) + game->dir_y * cos(rot);
-	oldPlaneX = game->plane_x;
+	game->dir_y = old_dir_x * sin(rot) + game->dir_y * cos(rot);
+	old_plane_x = game->plane_x;
 	game->plane_x = game->plane_x * cos(rot) - game->plane_y * sin(rot);
-	game->plane_y = oldPlaneX * sin(rot) + game->plane_y * cos(rot);
+	game->plane_y = old_plane_x * sin(rot) + game->plane_y * cos(rot);
 }
 
 double	ft_rotate_camera_relative(char c)
