@@ -6,7 +6,7 @@
 /*   By: gadeneux <gadeneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 00:00:22 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/09 00:25:07 by gadeneux         ###   ########.fr       */
+/*   Updated: 2022/06/09 00:43:11 by gadeneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	perform_dda(t_game *game, t_raycasting ray)
 		ray.perpWallDist = (ray.sideDistX - ray.deltaDistX);
 	else
 		ray.perpWallDist = (ray.sideDistY - ray.deltaDistY);
-	ray.lineHeight = (int) (SCREEN_HEIGHT / ray.perpWallDist);
+	ray.lineHeight = (int)(SCREEN_HEIGHT / ray.perpWallDist);
 }
 
 void	calculate_texture_coordinate(t_game *game, t_raycasting ray)
@@ -75,34 +75,53 @@ void	calculate_texture_coordinate(t_game *game, t_raycasting ray)
 	else
 		ray.wallX = game->player_x + ray.perpWallDist * ray.rayDirX;
 	ray.wallX -= floor(ray.wallX);
-	ray.tex = get_texture(game, get_direction(ray.side, ray.side == 0 ? ray.stepX : ray.stepY));
-	ray.texX = (int) (ray.wallX * (double) ray.tex->width);
+	if (ray.side == 0)
+		ray.tex = get_texture(game, get_direction(ray.side, ray.stepX));
+	else
+		ray.tex = get_texture(game, get_direction(ray.side, ray.stepY));
+	ray.texX = (int)(ray.wallX * (double) ray.tex->width);
 	if (ray.side == 0 && ray.rayDirX > 0)
 		ray.texX = ray.tex->width - ray.texX - 1;
 	if (ray.side == 1 && ray.rayDirY < 0)
 		ray.texX = ray.tex->width - ray.texX - 1;
 	ray.step = 1.0 * ray.tex->height / ray.lineHeight;
-	ray.texPos = (ray.drawStart - SCREEN_HEIGHT / 2 + ray.lineHeight / 2) * ray.step;
+	ray.texPos = (ray.drawStart - SCREEN_HEIGHT / 2 + ray.lineHeight / 2)
+		* ray.step;
 }
 
 void	draw_3d_view(t_game *game, t_raycasting ray, int rayon_x)
 {
-	for(int y = ray.drawStart; y < ray.drawEnd; y++)
+	int	y;
+	int	i;
+
+	y = ray.drawStart;
+	while (y < ray.drawEnd)
 	{
-		int texY = ray.texPos;
 		ray.texPos += ray.step;
-		int color = ft_pixel_color(ray.tex->data, ray.texX, texY);
-		ft_pixel(game->img, rayon_x, y, color);
+		ft_pixel(game->img, rayon_x, y, ft_pixel_color(ray.tex->data, ray.texX,
+				ray.texPos));
+		y++;
 	}
-	for (int i = 0; i < ray.drawStart; i++)
+	i = 0;
+	while (i < ray.drawStart)
+	{
 		ft_pixel(game->img, rayon_x, i, game->ceil);
-	for (int i = ray.drawEnd; i < ray.drawEnd + SCREEN_HEIGHT; i++)
+		i++;
+	}
+	i = ray.drawEnd;
+	while (i < ray.drawEnd + SCREEN_HEIGHT)
+	{
 		ft_pixel(game->img, rayon_x, i, game->floor);
+		i++;
+	}
 }
 
 void	draw_rays_3d(t_game *game, t_raycasting ray)
 {
-	for (int rayon_x = 0; rayon_x < SCREEN_WIDTH; rayon_x++)
+	int	rayon_x;
+
+	rayon_x = 0;
+	while (rayon_x < SCREEN_WIDTH)
 	{
 		ray.cameraX = 2 * rayon_x / (double) SCREEN_WIDTH - 1;
 		ray.rayDirX = game->dir_x + game->plane_x * ray.cameraX;
@@ -116,5 +135,6 @@ void	draw_rays_3d(t_game *game, t_raycasting ray)
 		perform_dda(game, ray);
 		calculate_texture_coordinates(game, ray);
 		draw_3d_view(game, ray, rayon_x);
+		rayon_x++;
 	}
 }
