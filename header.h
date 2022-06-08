@@ -6,7 +6,7 @@
 /*   By: gadeneux <gadeneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:29 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/08 15:20:07 by gadeneux         ###   ########.fr       */
+/*   Updated: 2022/06/08 15:36:02 by gadeneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,10 @@ typedef struct	s_game {
 	int		key_w;
 	int		key_s;
 	char	**map;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
 }				t_game;
 
 void	draw_all();
@@ -106,7 +110,7 @@ int		ft_event_keyup(int keycode, void *data);
 
 int		ft_str_writeon(char **str, char *to_add);
 int		ft_str_cwriteon(char **str, char c);
-int		ft_strncmp(char *s1, char *s2, int n);
+int	ft_strncmp(char *s1, char *s2, unsigned long long n);
 int		ft_str_isempty(char *str, int begin, int len);
 
 void	*ft_calloc(size_t count, size_t size);

@@ -58,9 +58,6 @@ char	*ft_read_value(char *line, int len)
 
 void	ft_apply_value(t_game *game, char *line, char *value)
 {
-	int	height = 0;
-	int	width = 0;
-
 	if (ft_str_startswith(line, "NO"))
 		game->north = ft_texture(game->mlx, value);
 	if (ft_str_startswith(line, "SO"))

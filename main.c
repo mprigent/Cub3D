@@ -6,14 +6,11 @@
 /*   By: gadeneux <gadeneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:25 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/08 15:19:28 by gadeneux         ###   ########.fr       */
+/*   Updated: 2022/06/08 15:52:43 by gadeneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
-
-double dirX = -1, dirY = 0; 						//initial direction vector
-double planeX = 0, planeY = 0.66;					//the 2d raycaster version of camera plane
 
 t_texture	*get_texture(t_game *game, int direction)
 {
@@ -52,14 +49,14 @@ int		ft_iswall(t_game *game, int x, int y)
 	return (ft_getcaracter(game, x, y) == '1');
 }
 
-void draw_rays_3d(t_game *game)
+void	draw_rays_3d(t_game *game)
 {
 	for(int rayon_x = 0; rayon_x < SCREEN_WIDTH; rayon_x++)
     {
 		//calculate ray position and direction
 		double cameraX = 2 * rayon_x / (double) SCREEN_WIDTH - 1;		//x-coordinate in camera space
-		double rayDirX = dirX + planeX * cameraX;
-		double rayDirY = dirY + planeY * cameraX;
+		double rayDirX = game->dir_x + game->plane_x * cameraX;
+		double rayDirY = game->dir_y + game->plane_y * cameraX;
 
 		//which box of the map we're in
 		int mapX = (int) game->player_x;
@@ -177,6 +174,17 @@ void draw_rays_3d(t_game *game)
 	}
 }
 
+void	rotate_camera(t_game *game, double rot)
+{
+	//both camera direction and camera plane must be rotated
+	double oldDirX = game->dir_x;
+	game->dir_x = game->dir_x * cos(rot) - game->dir_y * sin(rot);
+	game->dir_y = oldDirX * sin(rot) + game->dir_y * cos(rot);
+	double oldPlaneX = game->plane_x;
+	game->plane_x = game->plane_x * cos(rot) - game->plane_y * sin(rot);
+	game->plane_y = oldPlaneX * sin(rot) + game->plane_y * cos(rot);
+}
+
 int render_next_frame(void *data)
 {
 	t_game		*game;
@@ -184,40 +192,28 @@ int render_next_frame(void *data)
 	game = (t_game*) data;
 	if (game->key_a)
 	{
-		//both camera direction and camera plane must be rotated
-		double oldDirX = dirX;
-		dirX = dirX * cos(ROTATION_SPEED) - dirY * sin(ROTATION_SPEED);
-		dirY = oldDirX * sin(ROTATION_SPEED) + dirY * cos(ROTATION_SPEED);
-		double oldPlaneX = planeX;
-		planeX = planeX * cos(ROTATION_SPEED) - planeY * sin(ROTATION_SPEED);
-		planeY = oldPlaneX * sin(ROTATION_SPEED) + planeY * cos(ROTATION_SPEED);
+		rotate_camera(game, ROTATION_SPEED);
 		draw_all((t_game*) data);
 	}
 	if (game->key_d)
 	{
-		//both camera direction and camera plane must be rotated
-		double oldDirX = dirX;
-		dirX = dirX * cos(-ROTATION_SPEED) - dirY * sin(-ROTATION_SPEED);
-		dirY = oldDirX * sin(-ROTATION_SPEED) + dirY * cos(-ROTATION_SPEED);
-		double oldPlaneX = planeX;
-		planeX = planeX * cos(-ROTATION_SPEED) - planeY * sin(-ROTATION_SPEED);
-		planeY = oldPlaneX * sin(-ROTATION_SPEED) + planeY * cos(-ROTATION_SPEED);
+		rotate_camera(game, -ROTATION_SPEED);
 		draw_all((t_game*) data);
 	}
 	if (game->key_w)
 	{
-		if (!ft_iswall(game, (int) (game->player_x + dirX * MOVE_SPEED), (int)game->player_y))
-			game->player_x += dirX * MOVE_SPEED;
-		if (!ft_iswall(game, (int)game->player_x, (int) (game->player_y + dirY * MOVE_SPEED)))
-			game->player_y += dirY * MOVE_SPEED;
+		if (!ft_iswall(game, (int) (game->player_x + game->dir_x * MOVE_SPEED), (int)game->player_y))
+			game->player_x += game->dir_x * MOVE_SPEED;
+		if (!ft_iswall(game, (int)game->player_x, (int) (game->player_y + game->dir_y * MOVE_SPEED)))
+			game->player_y += game->dir_y * MOVE_SPEED;
 		draw_all((t_game*) data);
 	}
 	if (game->key_s)
 	{
-		if (!ft_iswall(game, (int) (game->player_x - dirX * MOVE_SPEED), (int)game->player_y))
-			game->player_x -= dirX * MOVE_SPEED;
-		if (!ft_iswall(game, (int)game->player_x, (int) (game->player_y - dirY * MOVE_SPEED)))
-			game->player_y -= dirY * MOVE_SPEED;
+		if (!ft_iswall(game, (int) (game->player_x - game->dir_x * MOVE_SPEED), (int)game->player_y))
+			game->player_x -= game->dir_x * MOVE_SPEED;
+		if (!ft_iswall(game, (int)game->player_x, (int) (game->player_y - game->dir_y * MOVE_SPEED)))
+			game->player_y -= game->dir_y * MOVE_SPEED;
 		draw_all((t_game*) data);
 	}
 	return (0);
@@ -225,9 +221,8 @@ int render_next_frame(void *data)
 
 void draw_all(t_game *game)
 {
-	ft_rect(game->img, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, 0x00000000);
+	// ft_rect(game->img, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, 0x00000000);
 	draw_rays_3d(game);
-
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->img->img, 0, 0);
 }
 
@@ -328,6 +323,10 @@ t_game	*init_game()
 	game->player_position_set = 0;
 	game->floor = -1;
 	game->ceil = -1;
+	game->dir_x = -1;
+	game->dir_y = 0;
+	game->plane_x = 0;
+	game->plane_y = 0.66;
 	return (game);
 }
 
@@ -402,16 +401,6 @@ int main(int ac, char **av)
 		return (-4);
 	}
 
-	//both camera direction and camera plane must be rotated
-	// double rot = WEST_RADIANS;
-	// double oldDirX = dirX;
-
-	// dirX = dirX * cos(rot) - dirY * sin(rot);
-	// dirY = oldDirX * sin(rot) + dirY * cos(rot);
-	// double oldPlaneX = planeX;
-	// planeX = planeX * cos(rot) - planeY * sin(rot);
-	// planeY = oldPlaneX * sin(rot) + planeY * cos(rot);
-	
 	mlx_hook(game->mlx_win, 2, 1L << 0, ft_event_keydown, game);
 	mlx_hook(game->mlx_win, 3, 1L << 0, ft_event_keyup, game);
 	mlx_loop_hook(game->mlx, render_next_frame, game);

@@ -6,7 +6,7 @@
 /*   By: gadeneux <gadeneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 23:47:13 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/07 17:45:42 by gadeneux         ###   ########.fr       */
+/*   Updated: 2022/06/08 15:32:27 by gadeneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	ft_write_player_position(t_game *game, char direction, int x, int y)
 {
+	(void) direction;
 	game->player_x = x + 0.5;
 	game->player_y = y + 0.5;
 	game->player_position_set = 1;
@@ -61,7 +62,7 @@ int	ft_read_map_is_valid(char *str, int len)
 	return (1);
 }
 
-int	ft_write_map(char *str, int len, char ***map, int y)
+int	ft_write_map(char *str, int len, char ***map)
 {
 	char	*buf;
 	
@@ -94,13 +95,14 @@ int	ft_read_map_content(char *str, char ***map)
 	{
 		if (str[i] == '\n')
 		{
-			if (ft_write_map(&str[i - len], len, map, y++) != 1)
+			if (ft_write_map(&str[i - len], len, map) != 1)
 				return (0);
 			len = 0;
+			y++;
 		} else
 		if (i + 1 >= ft_strlen(str))
 		{
-			if (ft_write_map(&str[i - len], len + 1, map, y) != 1)
+			if (ft_write_map(&str[i - len], len + 1, map) != 1)
 				return (-1);
 			break ;
 		} else
