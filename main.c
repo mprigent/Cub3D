@@ -6,7 +6,7 @@
 /*   By: gadeneux <gadeneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:25 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/07 22:43:11 by gadeneux         ###   ########.fr       */
+/*   Updated: 2022/06/08 11:57:58 by gadeneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -333,9 +333,7 @@ t_game	*init_game()
 
 void	ft_free_game(t_game *game)
 {
-	if (game->img && game->img->addr)
-		free(game->img->addr);
-	if (game->img && game->img->img)
+	if (game->mlx && game->img && game->img->img)
 		mlx_destroy_image(game->mlx, game->img->img);
 	if (game->img)
 		free(game->img);
@@ -395,13 +393,13 @@ int main(int ac, char **av)
 	if (init_mlx(game) != 1)
 	{
 		ft_error("Mlx initialisation error\n");
-		//TODO free game structure
+		ft_free_game(game);
 		return (-3);
 	}
 	
 	if (init_global(game, av[1])!= 1)
 	{
-		//TODO free game structure
+		ft_free_game(game);
 		return (-4);
 	}
 
