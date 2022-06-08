@@ -6,7 +6,7 @@
 /*   By: gadeneux <gadeneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 23:47:13 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/09 01:39:36 by gadeneux         ###   ########.fr       */
+/*   Updated: 2022/06/09 01:49:26 by gadeneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@ int	ft_check_closed(char **map)
 	i = 0;
 	while (i < ft_strs_len(map))
 	{
-		j = 0;	
+		j = 0;
 		while (map[i][j])
 		{
 			if (map[i][j] != '1' && map[i][j] != ' '
