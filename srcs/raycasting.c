@@ -6,7 +6,7 @@
 /*   By: gadeneux <gadeneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 00:00:22 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/09 01:01:26 by gadeneux         ###   ########.fr       */
+/*   Updated: 2022/06/09 01:45:26 by gadeneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,8 +128,14 @@ void	draw_rays_3d(t_game *game, t_raycasting *ray)
 		ray->rayDirY = game->dir_y + game->plane_y * ray->cameraX;
 		ray->mapX = (int) game->player_x;
 		ray->mapY = (int) game->player_y;
-		ray->deltaDistX = (ray->rayDirX == 0) ? 1e30 : fabs(1 / ray->rayDirX);
-		ray->deltaDistY = (ray->rayDirY == 0) ? 1e30 : fabs(1 / ray->rayDirY);
+		if (ray->rayDirX == 0)
+			ray->deltaDistX = 1e30;
+		else
+			ray->deltaDistX = fabs(1 / ray->rayDirX);
+		if (ray->rayDirY == 0)
+			ray->deltaDistY = 1e30;
+		else
+			ray->deltaDistY = fabs(1 / ray->rayDirY);
 		ray->hit = 0;
 		calculate_initial_side_dist(game, ray);
 		perform_dda(game, ray);
