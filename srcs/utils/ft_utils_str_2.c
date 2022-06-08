@@ -6,7 +6,7 @@
 /*   By: gadeneux <gadeneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 18:15:24 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/08 23:15:51 by gadeneux         ###   ########.fr       */
+/*   Updated: 2022/06/09 01:42:08 by gadeneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,15 +85,17 @@ int	ft_strs_copy_into(char **tab, char **dst)
 
 void	ft_strs_rev(char **strs)
 {
-	int len;
-	int i;
-	
+	int		len;
+	char	*a;
+	char	*b;
+	int		i;
+
 	len = ft_strs_len(strs);
 	i = 0;
 	while (i < len / 2)
 	{
-		char *a = strs[i];
-		char *b = strs[len - 1 - i];
+		a = strs[i];
+		b = strs[len - 1 - i];
 		strs[i] = b;
 		strs[len - 1 - i] = a;
 		i++;
