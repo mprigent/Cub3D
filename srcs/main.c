@@ -6,138 +6,11 @@
 /*   By: gadeneux <gadeneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:25 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/08 23:53:31 by gadeneux         ###   ########.fr       */
+/*   Updated: 2022/06/09 00:49:40 by gadeneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-void	draw_rays_3d(t_game *game)
-{
-	for(int rayon_x = 0; rayon_x < SCREEN_WIDTH; rayon_x++)
-	{
-		//calculate ray position and direction
-		double cameraX = 2 * rayon_x / (double) SCREEN_WIDTH - 1;		//x-coordinate in camera space
-		double rayDirX = game->dir_x + game->plane_x * cameraX;
-		double rayDirY = game->dir_y + game->plane_y * cameraX;
-
-		//which box of the map we're in
-		int mapX = (int) game->player_x;
-		int mapY = (int) game->player_y;
-
-		//length of ray from current position to next x or y-side
-		double sideDistX;
-		double sideDistY;
-
-		//length of ray from one x or y-side to next x or y-side
-		double deltaDistX = (rayDirX == 0) ? 1e30 : fabs(1 / rayDirX);
-		double deltaDistY = (rayDirY == 0) ? 1e30 : fabs(1 / rayDirY);
-		double perpWallDist;
-
-		//what direction to step in x or y-direction (either +1 or -1)
-		int stepX;
-		int stepY;
-
-		int hit = 0; //was there a wall hit?
-		int side; //was a NS or a EW wall hit?
-
-		//calculate step and initial sideDist
-		if (rayDirX < 0)
-		{
-			stepX = -1;
-			sideDistX = (game->player_x - mapX) * deltaDistX;
-		}
-		else
-		{
-			stepX = 1;
-			sideDistX = (mapX + 1.0 - game->player_x) * deltaDistX;
-		}
-
-		if (rayDirY < 0)
-		{
-			stepY = -1;
-			sideDistY = (game->player_y - mapY) * deltaDistY;
-		}
-		else
-		{
-			stepY = 1;
-			sideDistY = (mapY + 1.0 - game->player_y) * deltaDistY;
-		}
-
-		//perform DDA
-		while (hit == 0)
-		{
-			//jump to next map square, either in x-direction, or in y-direction
-			if (sideDistX < sideDistY)
-			{
-				sideDistX += deltaDistX;
-				mapX += stepX;
-				side = 0;
-			}
-			else
-			{
-				sideDistY += deltaDistY;
-				mapY += stepY;
-				side = 1;
-			}
-			//Check if ray has hit a wall
-			if (ft_iswall(game, mapX, mapY)) hit = 1;
-		}
-
-		//Calculate distance projected on camera direction (Euclidean distance would give fisheye effect!)
-		if (side == 0)
-			perpWallDist = (sideDistX - deltaDistX);
-		else
-			perpWallDist = (sideDistY - deltaDistY);
-
-		//Calculate height of line to draw on screen
-		int lineHeight = (int) (SCREEN_HEIGHT / perpWallDist);
-
-		//calculate lowest and highest pixel to fill in current stripe
-		int drawStart = -lineHeight / 2 + SCREEN_HEIGHT / 2;
-		if (drawStart < 0)
-			drawStart = 0;
-		int drawEnd = lineHeight / 2 + SCREEN_HEIGHT / 2;
-		if (drawEnd >= SCREEN_HEIGHT)
-			drawEnd = SCREEN_HEIGHT - 1;
-
-		//calculate value of wallX
-		double wallX; //where exactly the wall was hit
-		if (side == 0) wallX = game->player_y + perpWallDist * rayDirY;
-		else           wallX = game->player_x + perpWallDist * rayDirX;
-			wallX -= floor((wallX));
-
-		t_texture *tex = get_texture(game, get_direction(side, side == 0 ? stepX : stepY));
-
-		//x coordinate on the texture
-		int texX = (int) (wallX * (double) tex->width);
-		if(side == 0 && rayDirX > 0) texX = tex->width - texX - 1;
-		if(side == 1 && rayDirY < 0) texX = tex->width - texX - 1;
-
-		// How much to increase the texture coordinate per screen pixel
-		double step = 1.0 * tex->height / lineHeight;
-		// Starting texture coordinate
-		double texPos = (drawStart - SCREEN_HEIGHT / 2 + lineHeight / 2) * step;
-		for(int y = drawStart; y < drawEnd; y++)
-		{
-			int texY = texPos;
-			texPos += step;
-			int color = ft_pixel_color(tex->data, texX, texY);
-
-			ft_pixel(game->img, rayon_x, y, color);
-		}
-
-		// sky
-		for (int i = 0; i < drawStart; i++)
-			ft_pixel(game->img, rayon_x, i, game->ceil);
-			
-		// ground
-		for (int i = drawEnd; i < drawEnd + SCREEN_HEIGHT; i++)
-		{
-			ft_pixel(game->img, rayon_x, i, game->floor);
-		}
-	}
-}
 
 int render_next_frame(void *data)
 {
@@ -173,10 +46,17 @@ int render_next_frame(void *data)
 	return (0);
 }
 
-void draw_all(t_game *game)
+int	draw_all(t_game *game)
 {
-	draw_rays_3d(game);
+	t_raycasting	*ray;
+
+	ray = malloc(sizeof(t_raycasting));
+	if (!ray)
+		return (0);
+	draw_rays_3d(game, ray);
+	free(ray);
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->img->img, 0, 0);
+	return (1);
 }
 
 // Change vector angle relative to NSEW (Config file)

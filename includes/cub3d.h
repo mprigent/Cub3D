@@ -6,7 +6,7 @@
 /*   By: gadeneux <gadeneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:29 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/09 00:12:44 by gadeneux         ###   ########.fr       */
+/*   Updated: 2022/06/09 00:51:48 by gadeneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,7 +192,6 @@ int				ft_check_closing(char **map, int x, int y);
 int				ft_check_closed(char **map);
 int				ft_read_map(t_game *game, char *config);
 
-
 //				UTILS				//
 /* -------------------------------------------------------------------------- */
 /*                       FILE = srcs/utils/ft_calloc.c                        */
@@ -268,14 +267,13 @@ int				ft_strs_writeon(char ***tab, char *str);
 int				is_numeric(char c);
 int				check_value(int i);
 
-
 //				MAIN				//
 /* -------------------------------------------------------------------------- */
 /*                              FILE = srcs/main.c                            */
 /* -------------------------------------------------------------------------- */
-void			draw_rays_3d(t_game *game, t_raycasting ray);
+void			draw_rays_3d(t_game *game, t_raycasting *ray);
 int				render_next_frame(void *data);
-void			draw_all(t_game *game);
+int				draw_all(t_game *game);
 int				check_filename(char *filename);
 
 #endif
