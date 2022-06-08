@@ -1,35 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   texture.c                                          :+:      :+:    :+:   */
+/*   ft_utils_maths.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/06 17:06:54 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/08 18:52:22 by mprigent         ###   ########.fr       */
+/*   Created: 2022/06/08 19:55:50 by mprigent          #+#    #+#             */
+/*   Updated: 2022/06/08 19:57:41 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-t_texture	*ft_texture(void *mlx, char *filename)
+float	ft_dist(float ax, float ay, float bx, float by, float ang)
 {
-	t_texture *ret;
-
-	ret = malloc(sizeof(t_texture));
-	if (!ret)
-		return (0);
-	ret->width = 0;
-	ret->height = 0;
-	ret->data = 0;
-	ret->data = mlx_xpm_file_to_image(mlx, filename, &ret->width, &ret->height);
-	if (!ret->data)
-		return (0);
-	return (ret);
+	(void) ang;
+	return (sqrt((bx - ax) * (bx - ax) + (by - ay) * (by - ay)));
 }
 
-void	ft_free_texture(void *mlx_ptr, t_texture *texture)
+float degToRad(float a)
 {
-	if (texture != 0)
-		mlx_destroy_image(mlx_ptr, texture->data);
+	return a*M_PI/180.0;
+}
+
+float FixAng(float a)
+{
+	if (a > 359) { a -= 360;}
+	if (a < 0) { a += 360;} 
+	return a;
+}
+
+float distance(float ax, float ay, float bx, float by, float ang)
+{
+	return cos(degToRad(ang))*(bx-ax) - sin(degToRad(ang))*(by-ay);
 }

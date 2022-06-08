@@ -6,48 +6,11 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:25 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/08 19:08:56 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/08 20:43:02 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-t_texture	*get_texture(t_game *game, int direction)
-{
-	switch (direction)
-	{
-		case NORTH: return (game->north);
-		case SOUTH: return (game->south);
-		case EAST: return (game->east);
-		case WEST: return (game->west);
-	}
-	return (NULL);
-}
-
-int	get_direction(int side, int step)
-{
-	// North or South
-	if (side == 0)
-		return (step > 0 ? SOUTH : NORTH);
-	// West or East
-	if (side == 1)
-		return (step > 0 ? EAST : WEST);
-	return (-1);
-}
-
-char	ft_getcaracter(t_game *game, int x, int y)
-{
-	if (y < 0 || y >= ft_strs_len(game->map))
-		return (-1);
-	if (x < 0 || x >= ft_strlen(game->map[y]))
-		return (-2);
-	return (game->map[y][x]);
-}
-
-int		ft_iswall(t_game *game, int x, int y)
-{
-	return (ft_getcaracter(game, x, y) == '1');
-}
 
 void	draw_rays_3d(t_game *game)
 {
@@ -181,12 +144,12 @@ int render_next_frame(void *data)
 	game = (t_game*) data;
 	if (game->key_a)
 	{
-		rotate_camera(game, ROTATION_SPEED);
+		ft_rotate_camera(game, ROTATION_SPEED);
 		draw_all((t_game*) data);
 	}
 	if (game->key_d)
 	{
-		rotate_camera(game, -ROTATION_SPEED);
+		ft_rotate_camera(game, -ROTATION_SPEED);
 		draw_all((t_game*) data);
 	}
 	if (game->key_w)
@@ -213,127 +176,6 @@ void draw_all(t_game *game)
 	// ft_rect(game->img, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, 0x00000000);
 	draw_rays_3d(game);
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->img->img, 0, 0);
-}
-
-int	init_parameters(t_game *game, char *content)
-{
-	if (ft_read_parameters(game, content) != 1)
-	{
-		ft_error("Parameters read error\n");
-		return (-1);
-	}
-	return (1);
-}
-
-int	init_map(t_game *game, char *content)
-{
-	game->map = ft_strs_alloc();
-	if (!game->map)
-	{
-		ft_error("Map allocation error\n");
-		return (-1);
-	}
-	if (ft_read_map(game, content) != 1)
-	{
-		ft_error("Map read error\n");
-		return (-1);
-	}
-	return (1);
-}
-
-int	init_global(t_game *game, char *file)
-{
-	char	*content;
-	
-	content = ft_read_file(file);
-	if (content == NULL)
-	{
-		ft_error("File read error\n");
-		return (0);
-	}
-	if (init_parameters(game, content) != 1)
-	{
-		free(content);
-		return (-1);
-	}
-	if (init_map(game, content) != 1)
-	{
-		free(content);
-		return (-2);
-	}
-	free(content);
-	return (1);
-}
-
-int	init_mlx(t_game *game)
-{
-	game->mlx = mlx_init();
-	if (!game->mlx)
-		return (0);
-	game->mlx_win = mlx_new_window(game->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "Cat3d");
-	if (!game->mlx_win)
-		return (-1);
-	game->img = malloc(sizeof(t_data));
-	if (!game->img)
-		return (-2);
-	game->img->img = mlx_new_image(game->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
-	if (!game->img->img)
-		return (-2);
-	game->img->addr = mlx_get_data_addr(game->img->img, &game->img->bits_per_pixel, &game->img->line_length,
-									  &game->img->endian);
-	if (!game->img->addr)
-		return (-2);
-	
-	return (1);
-}
-
-t_game	*init_game()
-{
-	t_game	*game;
-
-	game = malloc(sizeof(t_game));
-	if (!game)
-		return (0);
-	game->img = 0;
-	game->map = 0;
-	game->mlx = 0;
-	game->mlx_win = 0;
-	game->north = 0;
-	game->south = 0;
-	game->east = 0;
-	game->west = 0;
-	game->key_a = 0;
-	game->key_d = 0;
-	game->key_w = 0;
-	game->key_s = 0;
-	game->player_x = 0;
-	game->player_y = 0;
-	game->player_position_set = 0;
-	game->floor = -1;
-	game->ceil = -1;
-	game->dir_x = -1;
-	game->dir_y = 0;
-	game->plane_x = 0;
-	game->plane_y = 0.66;
-	return (game);
-}
-
-void	ft_free_game(t_game *game)
-{
-	if (game->mlx && game->img && game->img->img)
-		mlx_destroy_image(game->mlx, game->img->img);
-	if (game->img)
-		free(game->img);
-	if (game->mlx_win)
-		mlx_destroy_window(game->mlx, game->mlx_win);
-	if (game->map)
-		ft_strs_free(&game->map);
-	ft_free_texture(game->mlx, game->north);
-	ft_free_texture(game->mlx, game->south);
-	ft_free_texture(game->mlx, game->east);
-	ft_free_texture(game->mlx, game->west);
-	if (game->mlx)
-		free(game->mlx);
 }
 
 // Change vector angle relative to NSEW (Config file)
@@ -369,21 +211,21 @@ int main(int ac, char **av)
 		return (-1);
 	}
 	
-	game = init_game();
+	game = ft_init_game();
 	if (!game)
 	{
 		ft_error("Game allocation error\n");
 		return (-2);
 	}
 	
-	if (init_mlx(game) != 1)
+	if (ft_init_mlx(game) != 1)
 	{
 		ft_error("Mlx initialisation error\n");
 		ft_free_game(game);
 		return (-3);
 	}
 	
-	if (init_global(game, av[1])!= 1)
+	if (ft_init_global(game, av[1])!= 1)
 	{
 		ft_free_game(game);
 		return (-4);

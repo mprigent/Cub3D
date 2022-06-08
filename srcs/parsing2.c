@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 23:47:13 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/08 18:52:22 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/08 19:37:22 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_write_player_position(t_game *game, char direction, int x, int y)
 	game->player_x = x + 0.5;
 	game->player_y = y + 0.5;
 	game->player_position_set = 1;
-	rotate_camera(game, rotate_camera_relative(direction));
+	ft_rotate_camera(game, ft_rotate_camera_relative(direction));
 }
 
 int	ft_read_player_position(t_game *game)

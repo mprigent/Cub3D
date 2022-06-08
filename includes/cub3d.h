@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:29 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/08 19:08:35 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/08 20:42:33 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,65 +90,174 @@ typedef struct s_game {
 	double		plane_y;
 }				t_game;
 
-void			draw_all(t_game *game);
-void			restore_map(int x1, int y1, int ray);
-
-void			ft_pixel(t_data *data, int x, int y, int color);
-void			ft_rect(t_data *data, int x, int y, \
-							int width, int height, int color);
-void			ft_square(t_data *data, int x, \
-							int y, int x2, int y2, int color);
-int				ft_pixels(int x, int y, int x2, int y2);
-void			ft_line(t_data *data, int x, int y, \
-							float dx, float dy, float pixels, int color);
-float			ft_dist(float ax, float ay, float bx, float by, float ang);
-unsigned int	ft_pixel_color(void *image, int x, int y);
-
-float			degToRad(float a);
-float			FixAng(float a);;
-float			distance(float ax, float ay, float bx, float by, float ang);
-
-int				ft_event_keydown(int keycode, void *game);
+/* -------------------------------------------------------------------------- */
+/*                       FILE = srcs/ft_events_keys.c                         */
+/* -------------------------------------------------------------------------- */
+int				ft_event_keydown(int keycode, void *data);
 int				ft_event_keyup(int keycode, void *data);
 
-int				ft_str_writeon(char **str, char *to_add);
-int				ft_str_cwriteon(char **str, char c);
-int				ft_strncmp(char *s1, char *s2, unsigned long long n);
-int				ft_str_isempty(char *str, int begin, int len);
+/* -------------------------------------------------------------------------- */
+/*                            FILE = srcs/ft_free.c                           */
+/* -------------------------------------------------------------------------- */
+void			ft_free_game(t_game *game);
 
-void			*ft_calloc(size_t count, size_t size);
-char			*ft_strdup(char *s1);
-char			*ft_strdup2(char *s1, int len);
-char			*ft_strjoin(char *s1, char *s2);
-void			*ft_memcpy(void *dst, void *src, size_t n);
-size_t			ft_strlcat(char *dst, char *src, size_t dstsize);
-int				ft_strlen(char *s);
-int				ft_str_contains(char *str, char c);
+/* -------------------------------------------------------------------------- */
+/*                       FILE = srcs/ft_get_utils_main.c                      */
+/* -------------------------------------------------------------------------- */
+t_texture		*get_texture(t_game *game, int direction);
+int				get_direction(int side, int step);
+char			ft_getcaracter(t_game *game, int x, int y);
+int				ft_iswall(t_game *game, int x, int y);
 
-int				ft_str_isempty(char *str, int begin, int len);
-int				ft_str_startswith(char *str, char *something);
+/* -------------------------------------------------------------------------- */
+/*                            FILE = srcs/ft_init.c                           */
+/* -------------------------------------------------------------------------- */
+int				ft_init_parameters(t_game *game, char *content);
+int				ft_init_map(t_game *game, char *content);
+int				ft_init_global(t_game *game, char *file);
+int				ft_init_mlx(t_game *game);
+t_game			*ft_init_game();
 
-char			*ft_read_file(char *file);
-int				ft_read_parameters(t_game *game, char *config);
-int				ft_read_map(t_game *game, char *config);
-void			ft_putnbr_fd(int n, int fd);
-
-int				ft_strs_writeon(char ***tab, char *str);
-void			ft_strs_free(char ***tab);
-char			**ft_strs_alloc(void);
-int				ft_strs_len(char **tab);
-
-t_texture		*ft_texture(void *mlx, char *filename);
-
+/* -------------------------------------------------------------------------- */
+/*                            FILE = srcs/ft_rgb.c                            */
+/* -------------------------------------------------------------------------- */
+int				ft_readint(char *str, int from, int end);
+int 			ft_rgb_write(char *str, int *rgb);
+int				check_format(char *str);
 int				ft_rgb(char *str);
 
-int				ft_rgb_to_int(int r, int g, int b);
+/* -------------------------------------------------------------------------- */
+/*                      FILE = srcs/ft_rotate_camera.c                        */
+/* -------------------------------------------------------------------------- */
+void			ft_rotate_camera(t_game *game, double rot);
+double			ft_rotate_camera_relative(char c);
 
-void			ft_error(char *str);
-
+/* -------------------------------------------------------------------------- */
+/*                         FILE = srcs/ft_texture.c                           */
+/* -------------------------------------------------------------------------- */
+t_texture		*ft_texture(void *mlx, char *filename);
 void			ft_free_texture(void *mlx_ptr, t_texture *texture);
 
-void			rotate_camera(t_game *game, double rot);
-double			rotate_camera_relative(char c);
+//				PARSING				//
+/* -------------------------------------------------------------------------- */
+/*                      FILE = srcs/parsing/ft_parse.c                        */
+/* -------------------------------------------------------------------------- */
+char			*ft_read_file(char *file);
+char			*ft_read_value(char *line, int len);
+void			ft_apply_value(t_game *game, char *line, char *value);
+int				ft_read_parameter(t_game *game, char *config, int begin, int len);
+int				ft_check_for_missing(t_game *game);
+int				ft_read_parameters(t_game *game, char *config);
+
+/* -------------------------------------------------------------------------- */
+/*                      FILE = srcs/parsing/ft_parse.c                        */
+/* -------------------------------------------------------------------------- */
+void			ft_write_player_position(t_game *game, char direction, int x, int y);
+int				ft_read_map_is_valid(char *str, int len);
+int				ft_write_map(char *str, int len, char ***map);
+int				ft_read_map_content(char *str, char ***map);
+int				ft_check_closing(char **map, int x, int y);
+int				ft_check_closed(char **map);
+int				ft_read_map(t_game *game, char *config);
+
+//				UTILS				//
+/* -------------------------------------------------------------------------- */
+/*                       FILE = srcs/utils/ft_calloc.c                        */
+/* -------------------------------------------------------------------------- */
+void			*ft_calloc(size_t count, size_t size);
+
+/* -------------------------------------------------------------------------- */
+/*                       FILE = srcs/utils/ft_error.c                         */
+/* -------------------------------------------------------------------------- */
+void			ft_error(char *str);
+
+/* -------------------------------------------------------------------------- */
+/*                      FILE = srcs/utils/ft_memcpy.c                         */
+/* -------------------------------------------------------------------------- */
+void			*ft_memcpy(void *dst, void *src, size_t n);
+
+/* -------------------------------------------------------------------------- */
+/*                      FILE = srcs/utils/ft_strdup.c                         */
+/* -------------------------------------------------------------------------- */
+char			*ft_strdup2(char *s1, int len);
+char			*ft_strdup(char *s1);
+
+/* -------------------------------------------------------------------------- */
+/*                      FILE = srcs/utils/ft_strjoin.c                        */
+/* -------------------------------------------------------------------------- */
+char			*ft_strjoin(char *s1, char *s2);
+
+/* -------------------------------------------------------------------------- */
+/*                      FILE = srcs/utils/ft_strlcat.c                        */
+/* -------------------------------------------------------------------------- */
+size_t			ft_strlcat(char *dst, char *src, size_t dstsize);
+
+/* -------------------------------------------------------------------------- */
+/*                      FILE = srcs/utils/ft_strlen.c                         */
+/* -------------------------------------------------------------------------- */
+int				ft_strlen(char *s);
+
+/* -------------------------------------------------------------------------- */
+/*                     FILE = srcs/utils/ft_strncmp.c                         */
+/* -------------------------------------------------------------------------- */
+int				ft_strncmp(char *s1, char *s2, unsigned long long n);
+
+/* -------------------------------------------------------------------------- */
+/*                    FILE = srcs/utils/ft_utils_maths.c                      */
+/* -------------------------------------------------------------------------- */
+float			ft_dist(float ax, float ay, float bx, float by, float ang);
+float			degToRad(float a);
+float			FixAng(float a);
+float			distance(float ax, float ay, float bx, float by, float ang);
+
+/* -------------------------------------------------------------------------- */
+/*                  FILE = srcs/utils/ft_utils_pixel.c                        */
+/* -------------------------------------------------------------------------- */
+void			ft_pixel(t_data *data, int x, int y, int color);
+unsigned int	ft_pixel_color(void *image, int x, int y);
+int				ft_pixels(int x, int y, int x2, int y2);
+void			ft_line(t_data *data, int x, int y, \
+						float dx, float dy, float pixels, int color);
+int				ft_rgb_to_int(int r, int g, int b);
+
+/* -------------------------------------------------------------------------- */
+/*                  FILE = srcs/utils/ft_utils_pixel_2.c                      */
+/* -------------------------------------------------------------------------- */
+void			ft_rect(t_data *data, int x, int y, int width, int height, int color);
+void			ft_square(t_data *data, int x, int y, int x2, int y2, int color);
+
+/* -------------------------------------------------------------------------- */
+/*                   FILE = srcs/utils/ft_utils_str.c                         */
+/* -------------------------------------------------------------------------- */
+int				ft_str_writeon(char **str, char *to_add);
+int				ft_str_cwriteon(char **str, char c);
+int				ft_str_isempty(char *str, int begin, int len);
+int				ft_str_startswith(char *str, char *something);
+int				ft_str_contains(char *str, char c);
+
+/* -------------------------------------------------------------------------- */
+/*                 FILE = srcs/utils/ft_utils_str_2.c                         */
+/* -------------------------------------------------------------------------- */
+char			**ft_strs_alloc(void);
+int				ft_strs_len(char **tab);
+void			ft_strs_free(char ***tab);
+char			**ft_strs_allocate(char *str);
+int				ft_strs_copy_into(char **tab, char **dst);
+
+/* -------------------------------------------------------------------------- */
+/*                 FILE = srcs/utils/ft_utils_str_3.c                         */
+/* -------------------------------------------------------------------------- */
+int				ft_strs_writeon(char ***tab, char *str);
+int				is_numeric(char c);
+int				check_value(int i);
+
+//				MAIN				//
+/* -------------------------------------------------------------------------- */
+/*                              FILE = srcs/main.c                            */
+/* -------------------------------------------------------------------------- */
+void	draw_rays_3d(t_game *game);
+int		render_next_frame(void *data);
+void	draw_all(t_game *game);
+int		check_filename(char *filename);
 
 #endif

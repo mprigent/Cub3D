@@ -1,21 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rgb.c                                              :+:      :+:    :+:   */
+/*   ft_rgb.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 13:55:21 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/08 18:52:22 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/08 20:06:16 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-int is_numeric(char c)
-{
-	return (c >= '0' && c <= '9');
-}
 
 int	ft_readint(char *str, int from, int end)
 {
@@ -59,11 +54,6 @@ int ft_rgb_write(char *str, int *rgb)
 		i++;
 	}
 	return (0);
-}
-
-int check_value(int i)
-{
-	return (i >= 0 && i <= 255);
 }
 
 int	check_format(char *str)

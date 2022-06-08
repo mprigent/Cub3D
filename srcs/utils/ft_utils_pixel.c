@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_utils_pixel.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:11 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/08 18:52:22 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/08 19:58:46 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,28 +33,6 @@ unsigned int		ft_pixel_color(void *image, int x, int y)
 	return (*(unsigned int*)dst);
 }
 
-void	ft_rect(t_data *data, int x, int y, int width, int height, int color)
-{
-	for (int i = 0; i < width; i++)
-	{
-		for (int j = 0; j < height; j++)
-		{
-			ft_pixel(data, x + i, y + j, color);	
-		}
-	}
-}
-
-void	ft_square(t_data *data, int x, int y, int x2, int y2, int color)
-{
-	for (int i = x; i < x2; i++)
-	{
-		for (int j = y; j < y2; j++)
-		{
-			ft_pixel(data, i, j, color);
-		}
-	}
-}
-
 int		ft_pixels(int x, int y, int x2, int y2)
 {
 	int	delta_x = x2 - x;
@@ -77,30 +55,7 @@ float pixels, int color)
 	}
 }
 
-float	ft_dist(float ax, float ay, float bx, float by, float ang)
-{
-	(void) ang;
-	return (sqrt((bx - ax) * (bx - ax) + (by - ay) * (by - ay)));
-}
-
-float degToRad(float a)
-{
-	return a*M_PI/180.0;
-}
-
-float FixAng(float a)
-{
-	if (a > 359) { a -= 360;}
-	if (a < 0) { a += 360;} 
-	return a;
-}
-
-float distance(float ax, float ay, float bx, float by, float ang)
-{
-	return cos(degToRad(ang))*(bx-ax) - sin(degToRad(ang))*(by-ay);
-}
-
 int ft_rgb_to_int(int r, int g, int b)
 {
-    return (65536 * r + 256 * g + b);
+	return (65536 * r + 256 * g + b);
 }

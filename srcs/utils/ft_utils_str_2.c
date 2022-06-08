@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 18:15:24 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/08 19:26:19 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/08 20:41:16 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	ft_strs_free(char ***tab)
 	free(*tab);
 }
 
-static char	**ft_strs_allocate(char *str)
+char	**ft_strs_allocate(char *str)
 {
 	char	**dst;
 	int		i;
@@ -67,7 +67,7 @@ static char	**ft_strs_allocate(char *str)
 	return (dst);
 }
 
-static int	ft_strs_copy_into(char **tab, char **dst)
+int	ft_strs_copy_into(char **tab, char **dst)
 {
 	int	i;
 

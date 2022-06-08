@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_utils_pixel_2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/17 16:42:45 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/08 19:13:33 by mprigent         ###   ########.fr       */
+/*   Created: 2022/06/08 19:57:53 by mprigent          #+#    #+#             */
+/*   Updated: 2022/06/08 19:58:40 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../includes/cub3d.h"
 
-static void	ft_putchar_fd(char c, int fd)
+void	ft_rect(t_data *data, int x, int y, int width, int height, int color)
 {
-	write(fd, &c, 1);
+	for (int i = 0; i < width; i++)
+	{
+		for (int j = 0; j < height; j++)
+		{
+			ft_pixel(data, x + i, y + j, color);	
+		}
+	}
 }
 
-void	ft_putnbr_fd(int n, int fd)
+void	ft_square(t_data *data, int x, int y, int x2, int y2, int color)
 {
-	if (n == -2147483648)
+	for (int i = x; i < x2; i++)
 	{
-		write(fd, "-2147483648", 12);
-		return ;
+		for (int j = y; j < y2; j++)
+		{
+			ft_pixel(data, i, j, color);
+		}
 	}
-	if (n < 0)
-	{
-		n = -n;
-		ft_putchar_fd('-', fd);
-	}
-	if ((n / 10) > 0)
-		ft_putnbr_fd(n / 10, fd);
-	ft_putchar_fd((n % 10) + '0', fd);
 }
