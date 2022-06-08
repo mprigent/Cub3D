@@ -26,6 +26,7 @@ SRC =		main.c \
 			texture.c \
 			rgb.c \
 			error.c \
+			camera.c
 
 OBJ =		${SRC:.c=.o}
 

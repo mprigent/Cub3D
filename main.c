@@ -6,7 +6,7 @@
 /*   By: gadeneux <gadeneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:25 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/08 15:52:43 by gadeneux         ###   ########.fr       */
+/*   Updated: 2022/06/08 16:27:09 by gadeneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,17 +174,6 @@ void	draw_rays_3d(t_game *game)
 	}
 }
 
-void	rotate_camera(t_game *game, double rot)
-{
-	//both camera direction and camera plane must be rotated
-	double oldDirX = game->dir_x;
-	game->dir_x = game->dir_x * cos(rot) - game->dir_y * sin(rot);
-	game->dir_y = oldDirX * sin(rot) + game->dir_y * cos(rot);
-	double oldPlaneX = game->plane_x;
-	game->plane_x = game->plane_x * cos(rot) - game->plane_y * sin(rot);
-	game->plane_y = oldPlaneX * sin(rot) + game->plane_y * cos(rot);
-}
-
 int render_next_frame(void *data)
 {
 	t_game		*game;
@@ -338,7 +327,8 @@ void	ft_free_game(t_game *game)
 		free(game->img);
 	if (game->mlx_win)
 		mlx_destroy_window(game->mlx, game->mlx_win);
-	ft_strs_free(&game->map);
+	if (game->map)
+		ft_strs_free(&game->map);
 	ft_free_texture(game->mlx, game->north);
 	ft_free_texture(game->mlx, game->south);
 	ft_free_texture(game->mlx, game->east);
@@ -350,7 +340,6 @@ void	ft_free_game(t_game *game)
 // Change vector angle relative to NSEW (Config file)
 // Check de la bonne direction des textures
 // Movement < > for move camera & WSAD for move player in space
-// Norm
 
 int	check_filename(char *filename)
 {

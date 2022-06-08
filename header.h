@@ -6,7 +6,7 @@
 /*   By: gadeneux <gadeneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:29 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/08 15:36:02 by gadeneux         ###   ########.fr       */
+/*   Updated: 2022/06/08 16:21:08 by gadeneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@
 
 # define PI 3.14159265359
 
-# define NORTH_RADIANS PI
-# define SOUTH_RADIANS 0
-# define EAST_RADIANS PI / 2
-# define WEST_RADIANS (3 * PI) / 2
+# define NORTH_RADIANS PI / 2
+# define SOUTH_RADIANS (3 * PI) / 2
+# define EAST_RADIANS PI
+# define WEST_RADIANS 0
 
 typedef struct	s_data {
 	void	*img;
@@ -144,5 +144,8 @@ int ft_rgb_to_int(int r, int g, int b);
 void	ft_error(char *str);
 
 void	ft_free_texture(void *mlx_ptr, t_texture *texture);
+
+void	rotate_camera(t_game *game, double rot);
+double	rotate_camera_relative(char c);
 
 # endif

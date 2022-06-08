@@ -6,7 +6,7 @@
 /*   By: gadeneux <gadeneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 23:47:13 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/08 15:32:27 by gadeneux         ###   ########.fr       */
+/*   Updated: 2022/06/08 16:09:32 by gadeneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	ft_write_player_position(t_game *game, char direction, int x, int y)
 {
-	(void) direction;
 	game->player_x = x + 0.5;
 	game->player_y = y + 0.5;
 	game->player_position_set = 1;
+	rotate_camera(game, rotate_camera_relative(direction));
 }
 
 int	ft_read_player_position(t_game *game)
