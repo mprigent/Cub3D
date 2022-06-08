@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:29 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/08 20:59:27 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/08 21:07:07 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,18 +209,7 @@ int				ft_strncmp(char *s1, char *s2, unsigned long long n);
 /* -------------------------------------------------------------------------- */
 void			ft_pixel(t_data *data, int x, int y, int color);
 unsigned int	ft_pixel_color(void *image, int x, int y);
-int				ft_pixels(int x, int y, int x2, int y2);
-void			ft_line(t_data *data, int x, int y, \
-						float dx, float dy, float pixels, int color);
 int				ft_rgb_to_int(int r, int g, int b);
-
-/* -------------------------------------------------------------------------- */
-/*                  FILE = srcs/utils/ft_utils_pixel_2.c                      */
-/* -------------------------------------------------------------------------- */
-void			ft_rect(t_data *data, int x, int y, \
-					int width, int height, int color);
-void			ft_square(t_data *data, int x, \
-					int y, int x2, int y2, int color);
 
 /* -------------------------------------------------------------------------- */
 /*                   FILE = srcs/utils/ft_utils_str.c                         */

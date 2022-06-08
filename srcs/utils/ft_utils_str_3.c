@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 19:25:45 by mprigent          #+#    #+#             */
-/*   Updated: 2022/06/08 20:41:25 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/08 21:00:59 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ int	ft_strs_writeon(char ***tab, char *str)
 	return (1);
 }
 
-int is_numeric(char c)
+int	is_numeric(char c)
 {
 	return (c >= '0' && c <= '9');
 }
 
-int check_value(int i)
+int	check_value(int i)
 {
 	return (i >= 0 && i <= 255);
 }

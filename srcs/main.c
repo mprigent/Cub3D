@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:25 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/08 20:43:02 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/08 21:06:35 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,6 @@ int render_next_frame(void *data)
 
 void draw_all(t_game *game)
 {
-	// ft_rect(game->img, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, 0x00000000);
 	draw_rays_3d(game);
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->img->img, 0, 0);
 }
