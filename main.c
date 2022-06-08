@@ -6,7 +6,7 @@
 /*   By: gadeneux <gadeneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:25 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/08 11:57:58 by gadeneux         ###   ########.fr       */
+/*   Updated: 2022/06/08 15:19:28 by gadeneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -348,7 +348,6 @@ void	ft_free_game(t_game *game)
 		free(game->mlx);
 }
 
-// Free game structure
 // Change vector angle relative to NSEW (Config file)
 // Check de la bonne direction des textures
 // Movement < > for move camera & WSAD for move player in space
@@ -383,7 +382,7 @@ int main(int ac, char **av)
 		return (-1);
 	}
 	
-	game = init_game();//malloc(sizeof(t_game));
+	game = init_game();
 	if (!game)
 	{
 		ft_error("Game allocation error\n");
@@ -419,6 +418,5 @@ int main(int ac, char **av)
 	draw_all(game);
 	mlx_loop(game->mlx);
 
-	
 	return (0);
 }
