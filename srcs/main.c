@@ -6,7 +6,7 @@
 /*   By: gadeneux <gadeneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:25 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/08 23:43:41 by gadeneux         ###   ########.fr       */
+/*   Updated: 2022/06/08 23:53:31 by gadeneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,17 +156,17 @@ int render_next_frame(void *data)
 	}
 	if (game->key_w)
 	{
-		if (!ft_iswall(game, (int) (game->player_x + game->dir_x * MOVE_SPEED), (int)game->player_y))
+		if (!ft_iswall(game, (int) (game->player_x + (game->dir_x * (MOVE_SPEED * 2))), (int)game->player_y))
 			game->player_x += game->dir_x * MOVE_SPEED;
-		if (!ft_iswall(game, (int)game->player_x, (int) (game->player_y + game->dir_y * MOVE_SPEED)))
+		if (!ft_iswall(game, (int)game->player_x, (int) (game->player_y + game->dir_y * (MOVE_SPEED * 2))))
 			game->player_y += game->dir_y * MOVE_SPEED;
 		draw_all((t_game*) data);
 	}
 	if (game->key_s)
 	{
-		if (!ft_iswall(game, (int) (game->player_x - game->dir_x * MOVE_SPEED), (int)game->player_y))
+		if (!ft_iswall(game, (int) (game->player_x - (game->dir_x * (MOVE_SPEED * 2))), (int)game->player_y))
 			game->player_x -= game->dir_x * MOVE_SPEED;
-		if (!ft_iswall(game, (int)game->player_x, (int) (game->player_y - game->dir_y * MOVE_SPEED)))
+		if (!ft_iswall(game, (int)game->player_x, (int) (game->player_y - game->dir_y * (MOVE_SPEED * 2))))
 			game->player_y -= game->dir_y * MOVE_SPEED;
 		draw_all((t_game*) data);
 	}
