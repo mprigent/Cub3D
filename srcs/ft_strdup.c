@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gadeneux <gadeneux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 11:24:14 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/02 17:33:32 by gadeneux         ###   ########.fr       */
+/*   Updated: 2022/06/08 18:52:22 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "../includes/cub3d.h"
 
 char	*ft_strdup2(char *s1, int len)
 {

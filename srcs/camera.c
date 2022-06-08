@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gadeneux <gadeneux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 15:54:25 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/08 16:10:05 by gadeneux         ###   ########.fr       */
+/*   Updated: 2022/06/08 18:52:22 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "../includes/cub3d.h"
 
 void	rotate_camera(t_game *game, double rot)
 {

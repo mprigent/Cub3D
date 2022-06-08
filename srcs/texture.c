@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gadeneux <gadeneux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 17:06:54 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/07 22:34:05 by gadeneux         ###   ########.fr       */
+/*   Updated: 2022/06/08 18:52:22 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "../includes/cub3d.h"
 
 t_texture	*ft_texture(void *mlx, char *filename)
 {

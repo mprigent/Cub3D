@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gadeneux <gadeneux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 12:01:25 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/05/30 18:14:32 by gadeneux         ###   ########.fr       */
+/*   Updated: 2022/06/08 18:52:22 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "../includes/cub3d.h"
 
 char	*ft_strjoin(char *s1, char *s2)
 {

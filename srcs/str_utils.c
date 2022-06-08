@@ -1,4 +1,4 @@
-#include "header.h"
+#include "../includes/cub3d.h"
 
 int ft_str_writeon(char **str, char *to_add)
 {
