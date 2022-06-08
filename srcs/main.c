@@ -6,7 +6,7 @@
 /*   By: gadeneux <gadeneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:25 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/09 00:49:40 by gadeneux         ###   ########.fr       */
+/*   Updated: 2022/06/09 01:08:11 by gadeneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,17 +46,20 @@ int render_next_frame(void *data)
 	return (0);
 }
 
-int	draw_all(t_game *game)
+void draw_all(t_game *game)
 {
 	t_raycasting	*ray;
 
 	ray = malloc(sizeof(t_raycasting));
 	if (!ray)
-		return (0);
+	{
+		ft_free_game(game);
+		exit(0);
+	}
 	draw_rays_3d(game, ray);
 	free(ray);
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->img->img, 0, 0);
-	return (1);
+	return ;
 }
 
 // Change vector angle relative to NSEW (Config file)
