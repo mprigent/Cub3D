@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/16 14:41:16 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/08 18:52:22 by mprigent         ###   ########.fr       */
+/*   Created: 2021/04/16 11:59:27 by gadeneux          #+#    #+#             */
+/*   Updated: 2022/06/08 19:13:47 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
-void	*ft_memcpy(void *dst, void *src, size_t n)
+int	ft_strlen(char *s)
 {
-	const char	*s;
-	char		*d;
+	int	i;
 
-	d = dst;
-	s = src;
-	if (!d && !s)
-		return (dst);
-	while (n--)
-		*d++ = *s++;
-	return (dst);
+	i = 0;
+	while (s[i])
+		++i;
+	return (i);
 }
