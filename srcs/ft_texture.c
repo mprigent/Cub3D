@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 17:06:54 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/08 19:53:19 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/08 21:27:08 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_texture	*ft_texture(void *mlx, char *filename)
 {
-	t_texture *ret;
+	t_texture	*ret;
 
 	ret = malloc(sizeof(t_texture));
 	if (!ret)

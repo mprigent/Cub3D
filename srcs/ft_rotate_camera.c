@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 15:54:25 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/08 20:08:20 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/08 21:28:49 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 
 void	ft_rotate_camera(t_game *game, double rot)
 {
-	double oldDirX = game->dir_x;
+	double	oldDirX;
+	double	oldPlaneX;
+
+	oldDirX = game->dir_x;
 	game->dir_x = game->dir_x * cos(rot) - game->dir_y * sin(rot);
 	game->dir_y = oldDirX * sin(rot) + game->dir_y * cos(rot);
-	double oldPlaneX = game->plane_x;
+	oldPlaneX = game->plane_x;
 	game->plane_x = game->plane_x * cos(rot) - game->plane_y * sin(rot);
 	game->plane_y = oldPlaneX * sin(rot) + game->plane_y * cos(rot);
 }
