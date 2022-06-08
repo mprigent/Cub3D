@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gadeneux <gadeneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:25 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/08 21:11:42 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/08 23:43:41 by gadeneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	draw_rays_3d(t_game *game)
 			perpWallDist = (sideDistY - deltaDistY);
 
 		//Calculate height of line to draw on screen
-		int lineHeight = (int)(SCREEN_HEIGHT / perpWallDist);
+		int lineHeight = (int) (SCREEN_HEIGHT / perpWallDist);
 
 		//calculate lowest and highest pixel to fill in current stripe
 		int drawStart = -lineHeight / 2 + SCREEN_HEIGHT / 2;
@@ -101,19 +101,11 @@ void	draw_rays_3d(t_game *game)
 		if (drawEnd >= SCREEN_HEIGHT)
 			drawEnd = SCREEN_HEIGHT - 1;
 
-		// sky
-		for (int i = 0; i < drawStart; i++)
-			ft_pixel(game->img, rayon_x, i, game->ceil); // 0xf852e8
-		// ground
-		for (int i = drawEnd; i < drawEnd + SCREEN_HEIGHT; i++) // SCREEN_HEIGHT
-		{
-			ft_pixel(game->img, rayon_x, i, game->floor); //0x984beeSCREEN_HEIGHT
-		}
 		//calculate value of wallX
 		double wallX; //where exactly the wall was hit
 		if (side == 0) wallX = game->player_y + perpWallDist * rayDirY;
 		else           wallX = game->player_x + perpWallDist * rayDirX;
-		wallX -= floor((wallX));
+			wallX -= floor((wallX));
 
 		t_texture *tex = get_texture(game, get_direction(side, side == 0 ? stepX : stepY));
 
@@ -133,6 +125,16 @@ void	draw_rays_3d(t_game *game)
 			int color = ft_pixel_color(tex->data, texX, texY);
 
 			ft_pixel(game->img, rayon_x, y, color);
+		}
+
+		// sky
+		for (int i = 0; i < drawStart; i++)
+			ft_pixel(game->img, rayon_x, i, game->ceil);
+			
+		// ground
+		for (int i = drawEnd; i < drawEnd + SCREEN_HEIGHT; i++)
+		{
+			ft_pixel(game->img, rayon_x, i, game->floor);
 		}
 	}
 }
