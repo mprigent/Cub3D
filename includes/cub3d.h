@@ -6,7 +6,7 @@
 /*   By: gadeneux <gadeneux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:29 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/08 23:01:31 by gadeneux         ###   ########.fr       */
+/*   Updated: 2022/06/09 00:12:44 by gadeneux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,31 @@ typedef struct s_game {
 	double		plane_x;
 	double		plane_y;
 }				t_game;
+
+typedef struct s_raycasting {
+	double	cameraX;
+	double	rayDirX;
+	double	rayDirY;
+	int		mapX;
+	int		mapY;
+	double	sideDistX;
+	double	sideDistY;
+	double	deltaDistX;
+	double	deltaDistY;
+	double	perpWallDist;
+	int		stepX;
+	int		stepY;
+	int		hit;
+	int		side;
+	int lineHeight;
+	int drawStart;
+	int drawEnd;
+	double wallX;
+	t_texture *tex;
+	int texX;
+	double step;
+	double texPos;
+}				t_raycasting;
 
 /* -------------------------------------------------------------------------- */
 /*                       FILE = srcs/ft_events_keys.c                         */
@@ -248,7 +273,7 @@ int				check_value(int i);
 /* -------------------------------------------------------------------------- */
 /*                              FILE = srcs/main.c                            */
 /* -------------------------------------------------------------------------- */
-void			draw_rays_3d(t_game *game);
+void			draw_rays_3d(t_game *game, t_raycasting ray);
 int				render_next_frame(void *data);
 void			draw_all(t_game *game);
 int				check_filename(char *filename);
