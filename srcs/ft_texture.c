@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 17:06:54 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/08 21:27:08 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/09 13:50:37 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ t_texture	*ft_texture(void *mlx, char *filename)
 
 void	ft_free_texture(void *mlx_ptr, t_texture *texture)
 {
-	if (texture != 0)
+	if (texture)
 		mlx_destroy_image(mlx_ptr, texture->data);
 }

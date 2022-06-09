@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 21:18:23 by mprigent          #+#    #+#             */
-/*   Updated: 2022/06/09 13:24:10 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/09 13:56:00 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,20 @@ int	ft_check_init(char **argv, t_game *game)
 	if (!game)
 	{
 		ft_error("Game allocation error\n");
-		return (-2);
+		return (0);
 	}
 	if (ft_init_mlx(game) != 1)
 	{
 		ft_error("Mlx initialisation error\n");
 		ft_free_game(game);
-		return (-3);
+		return (-1);
 	}
 	if (ft_init_global(game, argv[1]) != 1)
 	{
 		ft_free_game(game);
-		return (-4);
+		return (-2);
 	}
-	return (0);
+	return (1);
 }
 
 t_game	*ft_init_game(void)

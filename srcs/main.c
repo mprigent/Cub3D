@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:25 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/09 13:24:38 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/09 13:56:53 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,8 @@ int	main(int ac, char **av)
 		return (-1);
 	}
 	game = ft_init_game();
-	ft_check_init(av, game);
+	if (ft_check_init(av, game) != 1)
+		return (-2);
 	mlx_hook(game->mlx_win, 2, 1L << 0, ft_event_keydown, game);
 	mlx_hook(game->mlx_win, 3, 1L << 0, ft_event_keyup, game);
 	mlx_loop_hook(game->mlx, ft_render_next_frame, game);
