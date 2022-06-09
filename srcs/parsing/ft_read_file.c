@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 02:05:24 by mprigent          #+#    #+#             */
-/*   Updated: 2022/06/09 16:26:03 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/09 17:06:37 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int	ft_read_parameter(t_game *game, char *config, int begin, int len)
 		ft_apply_value(game, &config[begin], value);
 		return (1);
 	}
-	if (!ft_str_startswith(&config[begin], "1", 0)
-		&& !ft_str_startswith(&config[begin], " ", 0))
+	if (!ft_str_startswith(&config[begin], "1")
+		&& !ft_str_startswith(&config[begin], " "))
 		return (-2);
 	return (1);
 }

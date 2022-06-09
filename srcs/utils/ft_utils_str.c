@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 19:14:29 by mprigent          #+#    #+#             */
-/*   Updated: 2022/06/09 16:19:40 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/09 17:05:39 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,18 +66,12 @@ int	ft_str_isempty(char *str, int begin, int len)
 	return (1);
 }
 
-int	ft_str_startswith(char *str, char *something, int trim)
+int	ft_str_startswith(char *str, char *something)
 {
-	(void)trim;
 	if (!str)
 		return (0);
 	if (!something)
 		return (0);
-	// if (trim == 1)
-	// {
-	// 	while (*str && *str == ' ')
-	// 		str++;
-	// }
 	return (ft_strncmp(str, something, ft_strlen(something)) == 0);
 }
 

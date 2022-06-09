@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:29 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/09 16:23:55 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/09 17:05:19 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -265,7 +265,7 @@ int				ft_rgb_to_int(int r, int g, int b);
 int				ft_str_writeon(char **str, char *to_add);
 int				ft_str_cwriteon(char **str, char c);
 int				ft_str_isempty(char *str, int begin, int len);
-int				ft_str_startswith(char *str, char *something, int trim);
+int				ft_str_startswith(char *str, char *something);
 int				ft_str_contains(char *str, char c);
 
 /* -------------------------------------------------------------------------- */

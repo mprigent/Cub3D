@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 01:31:08 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/09 16:18:06 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/09 17:06:17 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,29 +42,29 @@ int	ft_write_map(char *str, int len, char ***map)
 
 void	ft_apply_value(t_game *game, char *line, char *value)
 {
-	if (ft_str_startswith(line, "NO", 1))
+	if (ft_str_startswith(line, "NO"))
 		game->north = ft_texture(game->mlx, value);
-	if (ft_str_startswith(line, "SO", 1))
+	if (ft_str_startswith(line, "SO"))
 		game->south = ft_texture(game->mlx, value);
-	if (ft_str_startswith(line, "WE", 1))
+	if (ft_str_startswith(line, "WE"))
 		game->west = ft_texture(game->mlx, value);
-	if (ft_str_startswith(line, "EA", 1))
+	if (ft_str_startswith(line, "EA"))
 		game->east = ft_texture(game->mlx, value);
-	if (ft_str_startswith(line, "F", 1))
+	if (ft_str_startswith(line, "F"))
 		game->floor = ft_rgb(value);
-	if (ft_str_startswith(line, "C", 1))
+	if (ft_str_startswith(line, "C"))
 		game->ceil = ft_rgb(value);
 	free(value);
 }
 
 int	ft_is_identifier(char *str)
 {
-	if (ft_str_startswith(str, "NO", 1)
-		|| ft_str_startswith(str, "SO", 1)
-		|| ft_str_startswith(str, "WE", 1)
-		|| ft_str_startswith(str, "EA", 1)
-		|| ft_str_startswith(str, "F", 1)
-		|| ft_str_startswith(str, "C", 1))
+	if (ft_str_startswith(str, "NO")
+		|| ft_str_startswith(str, "SO")
+		|| ft_str_startswith(str, "WE")
+		|| ft_str_startswith(str, "EA")
+		|| ft_str_startswith(str, "F")
+		|| ft_str_startswith(str, "C"))
 		return (1);
 	return (0);
 }
