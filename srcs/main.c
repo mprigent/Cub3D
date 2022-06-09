@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:25 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/09 16:24:35 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/09 17:36:12 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	ft_render_next_frame2(t_game *game, void *data)
 					(game->plane_x * (MOVE_SPEED * 2))), (int)game->player_y))
 			game->player_x -= game->plane_x * MOVE_SPEED;
 		if (!ft_iswall(game, (int)game->player_x, \
-					(int)(game->player_y + game->plane_y * (MOVE_SPEED * 2))))
+					(int)(game->player_y - game->plane_y * (MOVE_SPEED * 2))))
 			game->player_y -= game->plane_y * MOVE_SPEED;
 		ft_draw_all((t_game *) data);
 	}
