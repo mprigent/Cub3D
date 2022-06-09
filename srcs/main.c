@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:25 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/09 01:37:29 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/09 12:12:51 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ int	main(int ac, char **av)
 	}
 	if (!check_filename(av[1]))
 	{
-		ft_error("The map filename must have .cub extension");
+		ft_error("The map filename must have .cub extension\n");
 		return (-1);
 	}
 	game = ft_init_game();
