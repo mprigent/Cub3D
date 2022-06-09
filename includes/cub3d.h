@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:29 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/09 14:28:24 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/09 14:52:58 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ typedef struct s_game {
 	t_texture		*west;
 	int				ceil;
 	int				floor;
+	int				key_right;
+	int				key_left;
 	int				key_a;
 	int				key_d;
 	int				key_w;

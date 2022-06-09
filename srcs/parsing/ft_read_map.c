@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 23:47:13 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/09 14:45:27 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/09 15:08:37 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	ft_read_map_is_valid(char *str, int len)
 		if (str[i] != '1' && str[i] != '0' && str[i] != (char) 32
 			&& str[i] != 'N'
 			&& str[i] != 'S' && str[i] != 'E' && str[i] != 'W')
-			return (0);
+				return (0);
 		i++;
 	}
 	return (1);
@@ -137,8 +137,7 @@ int	ft_read_map(t_game *game, char *config)
 				|| ft_str_startswith(&config[i - len], "1"))
 			{
 				i = ft_read_map2(game, config, i, len);
-				if (i != 1)
-					return (i);
+				return (i);
 			}
 			len = 0;
 		}

@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:47:40 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/09 12:01:42 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/09 14:54:42 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	ft_event_keyup(int keycode, void *data)
 {
 	t_game	*game;
 
+	printf("%d\n",keycode);
 	game = (t_game *) data;
 	if (keycode == KEY_A)
 		game->key_a = 0;
