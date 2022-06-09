@@ -6,11 +6,32 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 21:18:23 by mprigent          #+#    #+#             */
-/*   Updated: 2022/06/09 13:15:04 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/09 13:24:10 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+int	ft_check_init(char **argv, t_game *game)
+{
+	if (!game)
+	{
+		ft_error("Game allocation error\n");
+		return (-2);
+	}
+	if (ft_init_mlx(game) != 1)
+	{
+		ft_error("Mlx initialisation error\n");
+		ft_free_game(game);
+		return (-3);
+	}
+	if (ft_init_global(game, argv[1]) != 1)
+	{
+		ft_free_game(game);
+		return (-4);
+	}
+	return (0);
+}
 
 t_game	*ft_init_game(void)
 {
