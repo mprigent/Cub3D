@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:29 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/09 14:52:58 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/09 15:24:21 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,15 @@
 # define ON_MOUSEMOVE 6
 # define ON_EXPOSE 12
 # define ON_DESTROY 17
-# define CLOSERED 33
+# define ESCAPE 53
 
 # define KEY_W 13
 # define KEY_S 1
 # define KEY_A 0
 # define KEY_D 2
+
+# define KEY_LEFT 123
+# define KEY_RIGHT 124
 
 # define SCREEN_WIDTH 1080
 # define SCREEN_HEIGHT 720
@@ -124,6 +127,7 @@ typedef struct s_game {
 /* -------------------------------------------------------------------------- */
 int				ft_event_keydown(int keycode, void *data);
 int				ft_event_keyup(int keycode, void *data);
+int				ft_event_close(void *data);
 
 /* -------------------------------------------------------------------------- */
 /*                            FILE = srcs/ft_free.c                           */

@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:25 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/09 13:56:53 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/09 15:28:47 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ int	ft_render_next_frame(void *data)
 	t_game	*game;
 
 	game = (t_game *) data;
-	if (game->key_a)
+	if (game->key_left)
 	{
 		ft_rotate_camera(game, ROTATION_SPEED);
 		ft_draw_all((t_game *) data);
 	}
-	if (game->key_d)
+	if (game->key_right)
 	{
 		ft_rotate_camera(game, -ROTATION_SPEED);
 		ft_draw_all((t_game *) data);
@@ -33,6 +33,28 @@ int	ft_render_next_frame(void *data)
 
 int	ft_render_next_frame2(t_game *game, void *data)
 {
+	if (game->key_a)
+	{
+		if (!ft_iswall(game, (int)(game->player_x + \
+					(game->plane_x * (MOVE_SPEED * 2))), (int)game->player_y))
+			game->player_x -= game->plane_x * MOVE_SPEED;
+			
+		if (!ft_iswall(game, (int)game->player_x, \
+					(int)(game->player_y + game->plane_y * (MOVE_SPEED * 2))))
+			game->player_y -= game->plane_y * MOVE_SPEED;
+		ft_draw_all((t_game *) data);
+	}
+	if (game->key_d)
+	{
+		if (!ft_iswall(game, (int)(game->player_x + \
+					(game->plane_x * (MOVE_SPEED * 2))), (int)game->player_y))
+			game->player_x += game->plane_x * MOVE_SPEED;
+			
+		if (!ft_iswall(game, (int)game->player_x, \
+					(int)(game->player_y + game->plane_y * (MOVE_SPEED * 2))))
+			game->player_y += game->plane_y * MOVE_SPEED;
+		ft_draw_all((t_game *) data);
+	}
 	if (game->key_w)
 	{
 		if (!ft_iswall(game, (int)(game->player_x + \
@@ -100,6 +122,7 @@ int	main(int ac, char **av)
 		return (-2);
 	mlx_hook(game->mlx_win, 2, 1L << 0, ft_event_keydown, game);
 	mlx_hook(game->mlx_win, 3, 1L << 0, ft_event_keyup, game);
+	mlx_hook(game->mlx_win, ON_DESTROY, 1L << 17, ft_event_close, game);
 	mlx_loop_hook(game->mlx, ft_render_next_frame, game);
 	ft_draw_all(game);
 	mlx_loop(game->mlx);
