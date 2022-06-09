@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 23:47:13 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/09 14:21:18 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/09 14:45:27 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,10 @@ char	*ft_read_value(char *line, int len)
 	}
 	while (*line && len--)
 	{
-		if (ft_str_cwriteon(&ret, *line++) != 1)
+		if (ft_str_cwriteon(&ret, *line++) != 1 && ret)
 		{
-			if (ret)
-			{
-				free(ret);
-				return (NULL);
-			}
+			free(ret);
+			return (NULL);
 		}
 	}
 	return (ret);
@@ -113,6 +110,18 @@ int	ft_read_map_content(char *str, char ***map)
 	return (1);
 }
 
+int	ft_read_map2(t_game *game, char *config, int i, int len)
+{
+	if (ft_read_map_content(&config[i - len], &(game->map)) != 1)
+		return (0);
+	ft_strs_rev(game->map);
+	if (ft_read_player_position(game) != 1)
+		return (-1);
+	if (ft_check_closed(game->map) != 1)
+		return (-2);
+	return (1);
+}
+
 int	ft_read_map(t_game *game, char *config)
 {
 	int		len;
@@ -127,14 +136,9 @@ int	ft_read_map(t_game *game, char *config)
 			if (ft_str_startswith(&config[i - len], " ")
 				|| ft_str_startswith(&config[i - len], "1"))
 			{
-				if (ft_read_map_content(&config[i - len], &(game->map)) != 1)
-					return (0);
-				ft_strs_rev(game->map);
-				if (ft_read_player_position(game) != 1)
-					return (-1);
-				if (ft_check_closed(game->map) != 1)
-					return (-2);
-				return (1);
+				i = ft_read_map2(game, config, i, len);
+				if (i != 1)
+					return (i);
 			}
 			len = 0;
 		}
