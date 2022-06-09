@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:25 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/09 12:12:51 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/09 13:17:31 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@ int	ft_render_next_frame(void *data)
 		ft_rotate_camera(game, -ROTATION_SPEED);
 		ft_draw_all((t_game *) data);
 	}
+	ft_render_next_frame2(game, data);
+	return (0);
+}
+
+int	ft_render_next_frame2(t_game *game, void *data)
+{
 	if (game->key_w)
 	{
 		if (!ft_iswall(game, (int)(game->player_x + \
@@ -75,27 +81,6 @@ int	check_filename(char *filename)
 		return (0);
 	return (filename[i - 1] == 'b' && filename[i - 2] == 'u' \
 			&& filename[i - 3] == 'c' && filename[i - 4] == '.');
-}
-
-int	ft_check_init(char **argv, t_game *game)
-{
-	if (!game)
-	{
-		ft_error("Game allocation error\n");
-		return (-2);
-	}
-	if (ft_init_mlx(game) != 1)
-	{
-		ft_error("Mlx initialisation error\n");
-		ft_free_game(game);
-		return (-3);
-	}
-	if (ft_init_global(game, argv[1]) != 1)
-	{
-		ft_free_game(game);
-		return (-4);
-	}
-	return (0);
 }
 
 int	main(int ac, char **av)

@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:29 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/09 12:45:07 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/09 13:18:06 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,7 @@ int				ft_iswall(t_game *game, int x, int y);
 /* -------------------------------------------------------------------------- */
 t_game			*ft_init_game(void);
 t_game			*ft_init_game2(t_game *game);
+int				ft_check_init(char **argv, t_game *game);
 
 /* -------------------------------------------------------------------------- */
 /*                        FILE = srcs/ft_init_global.c                        */
@@ -284,8 +285,8 @@ int				check_value(int i);
 /* -------------------------------------------------------------------------- */
 void			draw_rays_3d(t_game *game, t_raycasting *ray);
 int				ft_render_next_frame(void *data);
+int				ft_render_next_frame2(t_game *game, void *data);
 void			ft_draw_all(t_game *game);
 int				check_filename(char *filename);
-int				ft_check_init(char **argv, t_game *game);
 
 #endif
