@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:29 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/09 13:25:15 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/09 13:37:32 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,28 +92,28 @@ typedef struct s_raycasting {
 }				t_raycasting;
 
 typedef struct s_game {
-	void		*mlx_win;
-	void		*mlx;
-	t_data		*img;
+	void			*mlx_win;
+	void			*mlx;
+	t_data			*img;
 
-	double		player_x;
-	double		player_y;
-	int			player_position_set;
-	t_texture	*north;
-	t_texture	*south;
-	t_texture	*east;
-	t_texture	*west;
-	int			ceil;
-	int			floor;
-	int			key_a;
-	int			key_d;
-	int			key_w;
-	int			key_s;
-	char		**map;
-	double		dir_x;
-	double		dir_y;
-	double		plane_x;
-	double		plane_y;
+	double			player_x;
+	double			player_y;
+	int				player_position_set;
+	t_texture		*north;
+	t_texture		*south;
+	t_texture		*east;
+	t_texture		*west;
+	int				ceil;
+	int				floor;
+	int				key_a;
+	int				key_d;
+	int				key_w;
+	int				key_s;
+	char			**map;
+	double			dir_x;
+	double			dir_y;
+	double			plane_x;
+	double			plane_y;
 	t_raycasting	*ray;
 }				t_game;
 
