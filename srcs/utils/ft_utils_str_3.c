@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 19:25:45 by mprigent          #+#    #+#             */
-/*   Updated: 2022/06/08 21:00:59 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/09 01:58:51 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,25 @@ int	ft_strs_writeon(char ***tab, char *str)
 	*tab = dst;
 	ft_strs_free(&buf);
 	return (1);
+}
+
+void	ft_strs_rev(char **strs)
+{
+	int		len;
+	char	*a;
+	char	*b;
+	int		i;
+
+	len = ft_strs_len(strs);
+	i = 0;
+	while (i < len / 2)
+	{
+		a = strs[i];
+		b = strs[len - 1 - i];
+		strs[i] = b;
+		strs[len - 1 - i] = a;
+		i++;
+	}
 }
 
 int	is_numeric(char c)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gadeneux <gadeneux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 00:00:22 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/09 01:45:26 by gadeneux         ###   ########.fr       */
+/*   Updated: 2022/06/09 02:16:04 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	perform_dda(t_game *game, t_raycasting *ray)
 			ray->side = 1;
 		}
 		if (ft_iswall(game, ray->mapX, ray->mapY))
-				ray->hit = 1;
+			ray->hit = 1;
 	}
 	if (ray->side == 0)
 		ray->perpWallDist = (ray->sideDistX - ray->deltaDistX);

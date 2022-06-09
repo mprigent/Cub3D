@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:29 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/09 01:36:45 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/09 02:19:16 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,28 +91,28 @@ typedef struct s_game {
 }				t_game;
 
 typedef struct s_raycasting {
-	double	cameraX;
-	double	rayDirX;
-	double	rayDirY;
-	int		mapX;
-	int		mapY;
-	double	sideDistX;
-	double	sideDistY;
-	double	deltaDistX;
-	double	deltaDistY;
-	double	perpWallDist;
-	int		stepX;
-	int		stepY;
-	int		hit;
-	int		side;
-	int lineHeight;
-	int drawStart;
-	int drawEnd;
-	double wallX;
-	t_texture *tex;
-	int texX;
-	double step;
-	double texPos;
+	double		cameraX;
+	double		rayDirX;
+	double		rayDirY;
+	int			mapX;
+	int			mapY;
+	double		sideDistX;
+	double		sideDistY;
+	double		deltaDistX;
+	double		deltaDistY;
+	double		perpWallDist;
+	int			stepX;
+	int			stepY;
+	int			hit;
+	int			side;
+	int			lineHeight;
+	int			drawStart;
+	int			drawEnd;
+	double		wallX;
+	t_texture	*tex;
+	int			texX;
+	double		step;
+	double		texPos;
 }				t_raycasting;
 
 /* -------------------------------------------------------------------------- */
@@ -170,26 +170,36 @@ void			ft_free_texture(void *mlx_ptr, t_texture *texture);
 
 //				PARSING				//
 /* -------------------------------------------------------------------------- */
-/*                      FILE = srcs/parsing/ft_parse.c                        */
+/*                     FILE = srcs/parsing/ft_check_map.c                     */
 /* -------------------------------------------------------------------------- */
-char			*ft_read_file(char *file);
-char			*ft_read_value(char *line, int len);
-void			ft_apply_value(t_game *game, char *line, char *value);
-int				ft_read_parameter(t_game *game, char *config, \
-					int begin, int len);
+int				ft_check_closed(char **map);
+int				ft_check_closing(char **map, int x, int y);
 int				ft_check_for_missing(t_game *game);
-int				ft_read_parameters(t_game *game, char *config);
 
 /* -------------------------------------------------------------------------- */
 /*                      FILE = srcs/parsing/ft_parse.c                        */
 /* -------------------------------------------------------------------------- */
-void			ft_write_player_position(t_game *game, char direction, \
-					int x, int y);
-int				ft_read_map_is_valid(char *str, int len);
+void			ft_write_player_position(t_game *game, \
+					char direction, int x, int y);
 int				ft_write_map(char *str, int len, char ***map);
+void			ft_apply_value(t_game *game, char *line, char *value);
+int				ft_is_identifier(char *str);
+
+/* -------------------------------------------------------------------------- */
+/*                     FILE = srcs/parsing/ft_read_file.c                     */
+/* -------------------------------------------------------------------------- */
+int				ft_read_parameter(t_game *game, char *config, \
+					int begin, int len);
+char			*ft_read_file(char *file);
+int				ft_read_parameters(t_game *game, char *config);
+
+/* -------------------------------------------------------------------------- */
+/*                      FILE = srcs/parsing/ft_read_map.c                     */
+/* -------------------------------------------------------------------------- */
+char			*ft_read_value(char *line, int len);
+int				ft_read_player_position(t_game *game);
+int				ft_read_map_is_valid(char *str, int len);
 int				ft_read_map_content(char *str, char ***map);
-int				ft_check_closing(char **map, int x, int y);
-int				ft_check_closed(char **map);
 int				ft_read_map(t_game *game, char *config);
 
 //				UTILS				//
@@ -258,12 +268,12 @@ int				ft_strs_len(char **tab);
 void			ft_strs_free(char ***tab);
 char			**ft_strs_allocate(char *str);
 int				ft_strs_copy_into(char **tab, char **dst);
-void			ft_strs_rev(char **strs);
 
 /* -------------------------------------------------------------------------- */
 /*                 FILE = srcs/utils/ft_utils_str_3.c                         */
 /* -------------------------------------------------------------------------- */
 int				ft_strs_writeon(char ***tab, char *str);
+void			ft_strs_rev(char **strs);
 int				is_numeric(char c);
 int				check_value(int i);
 
@@ -275,6 +285,6 @@ void			draw_rays_3d(t_game *game, t_raycasting *ray);
 int				ft_render_next_frame(void *data);
 void			ft_draw_all(t_game *game);
 int				check_filename(char *filename);
-int 			ft_check_init(char **argv, t_game *game);
+int				ft_check_init(char **argv, t_game *game);
 
 #endif

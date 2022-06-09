@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utils_str_2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gadeneux <gadeneux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 18:15:24 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/09 01:42:08 by gadeneux         ###   ########.fr       */
+/*   Updated: 2022/06/09 01:58:47 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,23 +81,4 @@ int	ft_strs_copy_into(char **tab, char **dst)
 	}
 	dst[i] = 0;
 	return (1);
-}
-
-void	ft_strs_rev(char **strs)
-{
-	int		len;
-	char	*a;
-	char	*b;
-	int		i;
-
-	len = ft_strs_len(strs);
-	i = 0;
-	while (i < len / 2)
-	{
-		a = strs[i];
-		b = strs[len - 1 - i];
-		strs[i] = b;
-		strs[len - 1 - i] = a;
-		i++;
-	}
 }

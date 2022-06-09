@@ -1,23 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing2.c                                         :+:      :+:    :+:   */
+/*   ft_read_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gadeneux <gadeneux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 23:47:13 by gadeneux          #+#    #+#             */
+<<<<<<< HEAD:srcs/parsing/ft_read_map.c
+/*   Updated: 2022/06/09 02:05:45 by mprigent         ###   ########.fr       */
+=======
 /*   Updated: 2022/06/09 01:49:26 by gadeneux         ###   ########.fr       */
+>>>>>>> 5877dfe30b0240cc26b02723013e738c9de8129a:srcs/parsing2.c
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
-void	ft_write_player_position(t_game *game, char direction, int x, int y)
+char	*ft_read_value(char *line, int len)
 {
-	game->player_x = x + 0.5;
-	game->player_y = y + 0.5;
-	game->player_position_set = 1;
-	ft_rotate_camera(game, ft_rotate_camera_relative(direction));
+	char	*ret;
+
+	ret = NULL;
+	while (*line && *line != (char) 32)
+	{
+		line++;
+		len--;
+	}
+	while (*line && *line == (char) 32)
+	{
+		line++;
+		len--;
+	}
+	while (*line && len--)
+	{
+		if (ft_str_cwriteon(&ret, *line++) != 1)
+		{
+			if (ret)
+			{
+				free(ret);
+				return (NULL);
+			}
+		}
+	}
+	return (ret);
 }
 
 int	ft_read_player_position(t_game *game)
@@ -64,26 +89,6 @@ int	ft_read_map_is_valid(char *str, int len)
 	return (1);
 }
 
-int	ft_write_map(char *str, int len, char ***map)
-{
-	char	*buf;
-
-	if (ft_str_isempty(str, 0, len))
-		return (0);
-	if (ft_read_map_is_valid(str, len) != 1)
-		return (-1);
-	buf = ft_strdup2(str, len);
-	if (!buf)
-		return (-2);
-	if (ft_strs_writeon(map, buf) != 1)
-	{
-		free(buf);
-		return (-3);
-	}
-	free(buf);
-	return (1);
-}
-
 int	ft_read_map_content(char *str, char ***map)
 {
 	int		len;
@@ -115,6 +120,8 @@ int	ft_read_map_content(char *str, char ***map)
 	return (1);
 }
 
+<<<<<<< HEAD:srcs/parsing/ft_read_map.c
+=======
 int	ft_check_closing(char **map, int x, int y)
 {
 	if (y == 0 || y + 1 >= ft_strs_len(map))
@@ -151,6 +158,7 @@ int	ft_check_closed(char **map)
 	return (1);
 }
 
+>>>>>>> 5877dfe30b0240cc26b02723013e738c9de8129a:srcs/parsing2.c
 int	ft_read_map(t_game *game, char *config)
 {
 	int		len;
