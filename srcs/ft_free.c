@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 20:26:01 by mprigent          #+#    #+#             */
-/*   Updated: 2022/06/09 13:55:00 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/09 14:15:19 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	ft_free_game(t_game *game)
 {
-	(void) game;
-	
 	if (game->mlx && game->mlx_win)
 		mlx_destroy_window(game->mlx, game->mlx_win);
 	if (game->mlx && game->img && game->img->img)
@@ -32,5 +30,4 @@ void	ft_free_game(t_game *game)
 		ft_free_texture(game->mlx, game->west);
 		free(game->mlx);
 	}
-	exit(0);
 }
