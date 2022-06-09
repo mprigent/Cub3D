@@ -6,11 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 23:47:13 by gadeneux          #+#    #+#             */
-<<<<<<< HEAD:srcs/parsing/ft_read_map.c
-/*   Updated: 2022/06/09 02:05:45 by mprigent         ###   ########.fr       */
-=======
-/*   Updated: 2022/06/09 01:49:26 by gadeneux         ###   ########.fr       */
->>>>>>> 5877dfe30b0240cc26b02723013e738c9de8129a:srcs/parsing2.c
+/*   Updated: 2022/06/09 02:27:20 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,45 +116,6 @@ int	ft_read_map_content(char *str, char ***map)
 	return (1);
 }
 
-<<<<<<< HEAD:srcs/parsing/ft_read_map.c
-=======
-int	ft_check_closing(char **map, int x, int y)
-{
-	if (y == 0 || y + 1 >= ft_strs_len(map))
-		return (0);
-	if (x == 0 || x + 1 >= ft_strlen(map[y]))
-		return (-1);
-	if ((x >= ft_strlen(map[y + 1]) || map[y + 1][x] == ' ')
-			|| (x >= ft_strlen(map[y - 1])
-			|| map[y - 1][x] == ' '))
-		return (-2);
-	if (map[y][x - 1] == ' ' || map[y][x + 1] == ' ')
-		return (-3);
-	return (1);
-}
-
-int	ft_check_closed(char **map)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < ft_strs_len(map))
-	{
-		j = 0;
-		while (map[i][j])
-		{
-			if (map[i][j] != '1' && map[i][j] != ' '
-			&& ft_check_closing(map, j, i) != 1)
-				return (-1);
-			j++;
-		}
-		i++;
-	}
-	return (1);
-}
-
->>>>>>> 5877dfe30b0240cc26b02723013e738c9de8129a:srcs/parsing2.c
 int	ft_read_map(t_game *game, char *config)
 {
 	int		len;
