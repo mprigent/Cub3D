@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 23:47:13 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/09 02:27:20 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/09 14:21:18 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,9 @@ int	ft_read_map_is_valid(char *str, int len)
 int	ft_read_map_content(char *str, char ***map)
 {
 	int		len;
-	int		y;
 	int		i;
 
 	i = 0;
-	y = 0;
 	len = 0;
 	while (str[i])
 	{
@@ -101,7 +99,6 @@ int	ft_read_map_content(char *str, char ***map)
 			if (ft_write_map(&str[i - len], len, map) != 1)
 				return (0);
 			len = 0;
-			y++;
 		}
 		else if (i + 1 >= ft_strlen(str))
 		{
