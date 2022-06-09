@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:29 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/09 15:24:21 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/09 17:05:19 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -292,6 +292,7 @@ int				check_value(int i);
 void			draw_rays_3d(t_game *game, t_raycasting *ray);
 int				ft_render_next_frame(void *data);
 int				ft_render_next_frame2(t_game *game, void *data);
+int				ft_render_next_frame3(t_game *game, void *data);
 void			ft_draw_all(t_game *game);
 int				check_filename(char *filename);
 

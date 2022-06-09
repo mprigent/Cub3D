@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_utils_main.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gadeneux <gadeneux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 20:17:24 by mprigent          #+#    #+#             */
-/*   Updated: 2022/06/09 01:29:35 by gadeneux         ###   ########.fr       */
+/*   Updated: 2022/06/09 16:24:26 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,15 @@ char	ft_getcaracter(t_game *game, int x, int y)
 int	ft_iswall(t_game *game, int x, int y)
 {
 	return (ft_getcaracter(game, x, y) == '1');
+}
+
+int	check_filename(char *filename)
+{
+	int	i;
+
+	i = ft_strlen(filename);
+	if (i < 4)
+		return (0);
+	return (filename[i - 1] == 'b' && filename[i - 2] == 'u' \
+			&& filename[i - 3] == 'c' && filename[i - 4] == '.');
 }

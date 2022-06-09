@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 23:47:13 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/09 15:08:37 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/09 17:05:36 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,41 +29,14 @@ char	*ft_read_value(char *line, int len)
 	}
 	while (*line && len--)
 	{
-		if (ft_str_cwriteon(&ret, *line++) != 1 && ret)
+		if (*line != ' ' && ft_str_cwriteon(&ret, *line) != 1 && ret)
 		{
 			free(ret);
 			return (NULL);
 		}
+		line++;
 	}
 	return (ret);
-}
-
-int	ft_read_player_position(t_game *game)
-{
-	int		x;
-	int		y;
-
-	y = 0;
-	while (y < ft_strs_len(game->map))
-	{
-		x = 0;
-		while (game->map[y][x])
-		{
-			if (game->map[y][x] == 'N' || game->map[y][x] == 'S'
-					|| game->map[y][x] == 'E'
-					|| game->map[y][x] == 'W')
-			{
-				if (game->player_position_set == 1)
-					return (0);
-				ft_write_player_position(game, game->map[y][x], x, y);
-			}
-			x++;
-		}
-		y++;
-	}
-	if (game->player_position_set)
-		return (1);
-	return (-1);
 }
 
 int	ft_read_map_is_valid(char *str, int len)
@@ -76,7 +49,7 @@ int	ft_read_map_is_valid(char *str, int len)
 		if (str[i] != '1' && str[i] != '0' && str[i] != (char) 32
 			&& str[i] != 'N'
 			&& str[i] != 'S' && str[i] != 'E' && str[i] != 'W')
-				return (0);
+			return (0);
 		i++;
 	}
 	return (1);

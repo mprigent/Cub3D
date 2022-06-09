@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:25 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/09 15:28:47 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/09 16:24:35 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int	ft_render_next_frame2(t_game *game, void *data)
 		if (!ft_iswall(game, (int)(game->player_x + \
 					(game->plane_x * (MOVE_SPEED * 2))), (int)game->player_y))
 			game->player_x -= game->plane_x * MOVE_SPEED;
-			
 		if (!ft_iswall(game, (int)game->player_x, \
 					(int)(game->player_y + game->plane_y * (MOVE_SPEED * 2))))
 			game->player_y -= game->plane_y * MOVE_SPEED;
@@ -49,12 +48,17 @@ int	ft_render_next_frame2(t_game *game, void *data)
 		if (!ft_iswall(game, (int)(game->player_x + \
 					(game->plane_x * (MOVE_SPEED * 2))), (int)game->player_y))
 			game->player_x += game->plane_x * MOVE_SPEED;
-			
 		if (!ft_iswall(game, (int)game->player_x, \
 					(int)(game->player_y + game->plane_y * (MOVE_SPEED * 2))))
 			game->player_y += game->plane_y * MOVE_SPEED;
 		ft_draw_all((t_game *) data);
 	}
+	ft_render_next_frame3(game, data);
+	return (0);
+}
+
+int	ft_render_next_frame3(t_game *game, void *data)
+{
 	if (game->key_w)
 	{
 		if (!ft_iswall(game, (int)(game->player_x + \
@@ -88,19 +92,9 @@ void	ft_draw_all(t_game *game)
 	}
 	draw_rays_3d(game, game->ray);
 	free(game->ray);
+	game->ray = 0;
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->img->img, 0, 0);
 	return ;
-}
-
-int	check_filename(char *filename)
-{
-	int	i;
-
-	i = ft_strlen(filename);
-	if (i < 4)
-		return (0);
-	return (filename[i - 1] == 'b' && filename[i - 2] == 'u' \
-			&& filename[i - 3] == 'c' && filename[i - 4] == '.');
 }
 
 int	main(int ac, char **av)

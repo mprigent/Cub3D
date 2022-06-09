@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 20:26:01 by mprigent          #+#    #+#             */
-/*   Updated: 2022/06/09 14:15:19 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/09 15:52:40 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,6 @@ void	ft_free_game(t_game *game)
 		ft_free_texture(game->mlx, game->west);
 		free(game->mlx);
 	}
+	if (game->ray)
+		free(game->ray);
 }

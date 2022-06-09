@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 20:21:46 by mprigent          #+#    #+#             */
-/*   Updated: 2022/06/09 15:01:15 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/09 15:42:38 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	ft_init_mlx(t_game *game)
 	if (!game->mlx)
 		return (0);
 	game->mlx_win = mlx_new_window(game->mlx, \
-						SCREEN_WIDTH, SCREEN_HEIGHT, "Cat3d");
+						SCREEN_WIDTH, SCREEN_HEIGHT, "Cub3d");
 	if (!game->mlx_win)
 		return (-1);
 	game->img = malloc(sizeof(t_data));
