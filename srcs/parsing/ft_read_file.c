@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 02:05:24 by mprigent          #+#    #+#             */
-/*   Updated: 2022/06/09 11:55:19 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/09 13:35:12 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*ft_read_file(char *file)
 {
 	char	*buffer;
 	int		ret;
-	char	*buf;
+	char	buf[2];
 	int		fd;
 
 	buffer = NULL;
@@ -51,31 +51,16 @@ char	*ft_read_file(char *file)
 		ft_error("File error\n");
 		exit(1);
 	}
-	buf = malloc(sizeof(char) * 2);
-	if (!buf)
-		return (NULL);
 	ret = 1;
 	while (ret)
 	{
 		ret = read(fd, buf, 1);
 		if (ret == -1)
-		{
-			free(buf);
-			if (buffer)
-				free(buffer);
-			return (NULL);
-		}
+			return (free(buffer), NULL);
 		buf[1] = 0;
 		if (!ft_str_writeon(&buffer, buf))
-		{
-			free(buf);
-			if (buffer)
-				free(buffer);
-			return (NULL);
-		}
+			return (free(buffer), NULL);
 	}
-	if (buf)
-		free(buf);
 	return (buffer);
 }
 
