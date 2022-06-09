@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 16:23:25 by gadeneux          #+#    #+#             */
-/*   Updated: 2022/06/09 12:12:51 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/09 13:20:25 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,14 @@ int	ft_render_next_frame(void *data)
 
 void	ft_draw_all(t_game *game)
 {
-	t_raycasting	*ray;
-
-	ray = malloc(sizeof(t_raycasting));
-	if (!ray)
+	game->ray = malloc(sizeof(t_raycasting));
+	if (!game->ray)
 	{
 		ft_free_game(game);
 		exit(0);
 	}
-	draw_rays_3d(game, ray);
-	free(ray);
+	draw_rays_3d(game, game->ray);
+	free(game->ray);
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->img->img, 0, 0);
 	return ;
 }

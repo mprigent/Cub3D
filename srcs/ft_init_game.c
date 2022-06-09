@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 21:18:23 by mprigent          #+#    #+#             */
-/*   Updated: 2022/06/08 21:25:39 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/09 13:15:04 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,6 @@ t_game	*ft_init_game2(t_game *game)
 	game->dir_y = 0;
 	game->plane_x = 0;
 	game->plane_y = 0.66;
+	game->ray = 0;
 	return (game);
 }
