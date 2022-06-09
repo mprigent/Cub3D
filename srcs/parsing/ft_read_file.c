@@ -6,7 +6,7 @@
 /*   By: mprigent <mprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 02:05:24 by mprigent          #+#    #+#             */
-/*   Updated: 2022/06/09 02:13:40 by mprigent         ###   ########.fr       */
+/*   Updated: 2022/06/09 11:55:19 by mprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,12 @@ char	*ft_read_file(char *file)
 	int		fd;
 
 	buffer = NULL;
-	fd = open(file, O_RDONLY);
-	if (fd == -1)
-		return (NULL);
+	fd = open(file, O_RDWR);
+	if (fd <= -1)
+	{
+		ft_error("File error\n");
+		exit(1);
+	}
 	buf = malloc(sizeof(char) * 2);
 	if (!buf)
 		return (NULL);
